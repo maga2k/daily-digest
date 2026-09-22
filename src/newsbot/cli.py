@@ -126,7 +126,8 @@ def cmd_demo(args, settings: Settings):
     from newsbot.demo import seed_demo
     demo = dataclasses.replace(
         settings, db_path=settings.data_dir / "demo.db", output_dir=settings.output_dir / "demo",
-        anthropic_api_key=settings.anthropic_api_key if args.with_llm else None)
+        anthropic_api_key=settings.anthropic_api_key if args.with_llm else None,
+        llm_api_key=settings.llm_api_key if args.with_llm else None)
     if demo.db_path.exists():
         demo.db_path.unlink()
     ctx = pipeline.build_context(demo)

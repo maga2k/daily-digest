@@ -43,7 +43,8 @@ def build_context(settings: Settings) -> Context:
     db = DB(settings.db_path)
     db.init()
     backend = settings.resolved_embedding_backend()
-    log.info("embeddings: %s | LLM: %s", backend, "attivo" if settings.anthropic_api_key else "non configurato")
+    llm = LLM(settings)
+    log.info("embeddings: %s | LLM: %s (%s, %s)", backend, "attivo" if llm.enabled else "non configurato", settings.llm_provider, settings.llm_model)
     return Context(
         settings=settings, db=db, llm=LLM(settings),
         embedder=Embedder(backend, settings.embedding_model),

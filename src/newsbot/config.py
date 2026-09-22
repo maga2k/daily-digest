@@ -31,6 +31,10 @@ class Settings:
     telegram_chat_id: str | None = None
     apify_token: str | None = None
     user_agent: str = "newsbot/0.1 (progetto personale; rispetta robots.txt)"
+    llm_provider: str = "anthropic"      # anthropic | openai_compatible
+    llm_api_key: str | None = None
+    llm_base_url: str | None = None
+    llm_min_interval: float | None = None   # secondi minimi tra una chiamata e l'altra
 
     @classmethod
     def from_env(cls) -> "Settings":
@@ -52,6 +56,10 @@ class Settings:
             telegram_token=e("TELEGRAM_BOT_TOKEN") or None,
             telegram_chat_id=e("TELEGRAM_CHAT_ID") or None,
             apify_token=e("APIFY_TOKEN") or None,
+            llm_provider=e("NEWSBOT_LLM_PROVIDER", "anthropic"),
+            llm_api_key=e("NEWSBOT_LLM_API_KEY") or None,
+            llm_base_url=e("NEWSBOT_LLM_BASE_URL") or None,
+            llm_min_interval=float(e("NEWSBOT_LLM_MIN_INTERVAL")) if e("NEWSBOT_LLM_MIN_INTERVAL") else None,
         )
 
     def resolved_embedding_backend(self) -> str:

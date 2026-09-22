@@ -6,6 +6,7 @@ import json
 import logging
 import re
 from typing import Any
+import time
 
 from newsbot.config import Settings
 
@@ -15,10 +16,18 @@ log = logging.getLogger(__name__)
 class LLM:
     def __init__(self, settings: Settings):
         self.model = settings.llm_model
+        self.provider = settings.llm_provider
         self._client = None
-        if settings.anthropic_api_key:
+        if self.provider == "anthropic" and settings.anthropic_api_key:
             import anthropic
             self._client = anthropic.Anthropic(api_key=settings.anthropic_api_key)
+        elif self.provider == "openai_compatible" and settings.llm_api_key:
+            import openai   # pip install -e ".[free-llm]"
+            self._client = openai.OpenAI(api_key=settings.llm_api_key, base_url=settings.llm_base_url)
+        # rispetta i limiti del piano gratuito: attesa minima tra una chiamata e l'altra
+        default_interval = 2.1 if self.provider == "openai_compatible" else 0.0
+        self.min_interval = settings.llm_min_interval if settings.llm_min_interval is not None else default_interval
+        self._last_call = 0.0
 
     @property
     def enabled(self) -> bool:
@@ -26,11 +35,23 @@ class LLM:
 
     def complete(self, system: str, user: str, max_tokens: int = 2000) -> str:
         assert self._client is not None, "LLM non configurato"
-        msg = self._client.messages.create(
-            model=self.model, max_tokens=max_tokens, system=system,
-            messages=[{"role": "user", "content": user}],
-        )
-        return "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
+        wait = self.min_interval - (time.monotonic() - self._last_call)
+        if wait > 0:
+            time.sleep(wait)
+        try:
+            if self.provider == "anthropic":
+                msg = self._client.messages.create(
+                    model=self.model, max_tokens=max_tokens, system=system,
+                    messages=[{"role": "user", "content": user}],
+                )
+                return "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
+            resp = self._client.chat.completions.create(
+                model=self.model, max_tokens=max_tokens,
+                messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
+            )
+            return resp.choices[0].message.content or ""
+        finally:
+            self._last_call = time.monotonic()
 
     def json(self, system: str, user: str, max_tokens: int = 2000, retries: int = 1) -> Any | None:
         """Chiede JSON e lo interpreta. Restituisce None se fallisce (il chiamante ha un fallback)."""
