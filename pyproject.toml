@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "newsbot"
+version = "0.1.0"
+description = "Bot che raccoglie notizie, le clusterizza e prepara caroselli Instagram per revisione umana"
+requires-python = ">=3.10"
+dependencies = [
+  "feedparser>=6.0",
+  "trafilatura>=1.12",
+  "truststore>=0.9",           # certificati di sistema (macOS/Windows)
+  "lxml_html_clean",          # richiesto da trafilatura con lxml recenti
+  "httpx>=0.27",
+  "pyyaml>=6.0",
+  "python-dotenv>=1.0",
+  "numpy>=1.26",
+  "scikit-learn>=1.3",
+  "jinja2>=3.1",
+  "anthropic>=0.40",
+  "playwright>=1.45",
+]
+
+[project.optional-dependencies]
+# Embeddings multilingua locali (consigliato, ma pesante: ~2GB con torch)
+ml = ["sentence-transformers>=3.0"]
+# Sentiment con modello HuggingFace (opzionale)
+sentiment = ["transformers>=4.40", "torch"]
+# Lettura programmi elettorali in PDF
+pdf = ["pypdf>=4.0"]
+dev = ["pytest>=8.0", "ruff>=0.5"]
+
+[project.scripts]
+newsbot = "newsbot.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+newsbot = ["render/templates/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100

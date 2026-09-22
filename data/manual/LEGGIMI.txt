@@ -1,0 +1,3 @@
+Metti qui file .csv (stesso formato di esempio.csv.example) per importare a mano post di
+Instagram/X o altre fonti senza scraper. Poi: python -m newsbot manual
+(oppure `fetch`, che lo fa in automatico). I file *.example non vengono letti.

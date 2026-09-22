@@ -1,0 +1,30 @@
+# Esecuzione giornaliera automatica (facoltativa). Prepara le bozze e te le manda su Telegram.
+# Non pubblica nulla su Instagram. Imposta i secrets nel repo: ANTHROPIC_API_KEY, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID.
+name: daily-digest
+on:
+  schedule:
+    - cron: "30 5 * * *"     # 05:30 UTC ≈ 07:30 in Italia (ora legale)
+  workflow_dispatch:
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12", cache: pip }
+      - run: pip install -e ".[ml]"
+      - run: python -m playwright install --with-deps chromium
+      - name: Ripristina il database (storico articoli)
+        uses: actions/cache@v4
+        with:
+          path: data/newsbot.db
+          key: newsbot-db-${{ github.run_id }}
+          restore-keys: newsbot-db-
+      - run: python -m newsbot run --review
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      - uses: actions/upload-artifact@v4
+        with: { name: output, path: output/ }

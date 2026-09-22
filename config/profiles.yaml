@@ -1,0 +1,103 @@
+# Un profilo = un "account/tema" con i suoi criteri di ranking, stile e prompt.
+# Il codice è lo stesso per tutti: cambiano solo queste impostazioni.
+
+defaults: &defaults
+  lookback_hours: 36          # finestra di notizie considerate
+  top_n: 5                    # quante storie nel carosello
+  min_sources: 1              # min. testate distinte per considerare un cluster
+  cluster_kinds: [news]       # quali tipi di fonte entrano nel clustering
+  post_types: [digest]        # digest | versus
+  ranking:                    # pesi dello score (vedi processing/ranking.py)
+    w_sources: 1.0            # quante testate indipendenti coprono l'evento
+    w_recency: 0.8            # freschezza
+    w_authority: 0.5          # peso medio delle fonti (definito in sources.yaml)
+    w_engagement: 0.0         # engagement (utile per tech: HN punti, ecc.)
+    half_life_hours: 12
+  hashtags: []
+  handle: "@iltuoaccount"
+  disclosure: "Sintesi generata con l'aiuto di un'IA e verificata da una persona."
+  style:
+    accent: "#2B4EFF"
+    accent_soft: "#DDE4FF"
+  system_prompt: ""
+
+profiles:
+  mondo:
+    <<: *defaults
+    label: "Il mondo oggi"
+    top_n: 5
+    min_sources: 2
+    hashtags: ["#notizie", "#mondo", "#news", "#attualita"]
+    style: { accent: "#6B3FA0", accent_soft: "#E9DFF5" }
+    system_prompt: >
+      Profilo generalista. Dai priorità agli eventi coperti da più testate
+      indipendenti e di rilevanza internazionale. Se le testate raccontano
+      l'evento in modo diverso, segnala la differenza di taglio.
+
+  politica:
+    <<: *defaults
+    label: "Politica"
+    top_n: 5
+    min_sources: 2
+    post_types: [digest, versus]
+    hashtags: ["#politica", "#italia", "#attualita", "#factchecking"]
+    style: { accent: "#2B4EFF", accent_soft: "#DDE4FF" }
+    # Partiti da mettere a confronto nel post "versus" (stesso trattamento per tutti)
+    versus_parties: ["FdI", "PD"]
+    parties:
+      FdI: { name: "Fratelli d'Italia", color: "#1B3A6B" }
+      PD:  { name: "Partito Democratico", color: "#C4262E" }
+    factcheck_lookback_days: 45
+    system_prompt: >
+      Profilo politica. Regole extra: riporta cosa è stato DICHIARATO da ciascun
+      partito senza stabilire se sia vero. Ogni verdetto di verifica va attribuito
+      a chi l'ha pubblicato (es. "secondo Pagella Politica"). Se non esiste un
+      fact-check, scrivi "non verificato". Stessi criteri e stessa lunghezza per
+      ogni partito.
+
+  scienza:
+    <<: *defaults
+    label: "Scienza e salute"
+    top_n: 5
+    min_sources: 1
+    hashtags: ["#scienza", "#salute", "#ricerca", "#medicina"]
+    style: { accent: "#00857C", accent_soft: "#D6F0EC" }
+    ranking:
+      w_sources: 0.6
+      w_recency: 0.6
+      w_authority: 1.2
+      w_engagement: 0.0
+      half_life_hours: 24
+    lookback_hours: 72
+    system_prompt: >
+      Profilo scienza/medicina. Indica sempre, se desumibile dal materiale, se si
+      tratta di preprint, studio peer-reviewed, studio su animali/cellule o su
+      persone. Smorza l'hype dei titoli: niente "svolta", "rivoluzione", "cura
+      miracolosa". Non dare consigli medici.
+
+  tech:
+    <<: *defaults
+    label: "Tech"
+    top_n: 5
+    # regex (senza maiuscole): titoli promozionali o recensioni da escludere dal ranking
+    exclude_title_patterns:
+      - '\breview\b'
+      - '\bdeals?\b'
+      - 'save up to'
+      - '% off'
+      - 'discount'
+      - 'sponsored'
+      - '\bbest .* (of|for) 20\d\d'
+      - 'disrupt 20\d\d'
+    min_sources: 2
+    hashtags: ["#tech", "#ai", "#tecnologia", "#innovazione"]
+    style: { accent: "#E2591B", accent_soft: "#FCE3D6" }
+    ranking:
+      w_sources: 0.8
+      w_recency: 1.0
+      w_authority: 0.3
+      w_engagement: 0.7
+      half_life_hours: 10
+    system_prompt: >
+      Profilo tech. Tono diretto. Spiega in una riga perché la notizia conta.
+      Distingui annunci di prodotto da risultati verificati o benchmark indipendenti.

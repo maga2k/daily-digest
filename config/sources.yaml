@@ -1,0 +1,60 @@
+# Fonti per profilo.
+# type:  rss | web | apify_instagram
+# kind:  news | party (posizione dichiarata di un partito) | factcheck | social
+# weight: autorevolezza/affidabilità stimata (0.5-1.5). Rendila esplicita: è una SCELTA editoriale.
+# fulltext: true -> scarica anche il testo completo con trafilatura (più lento)
+#
+# ATTENZIONE: gli URL dei feed cambiano nel tempo. Verificali con:
+#     newsbot check-sources
+# Le fonti che falliscono vengono saltate (con log), non bloccano la pipeline.
+# Per trovare il feed giusto di un sito:  newsbot discover https://sito.it
+# enabled: false  disattiva una fonte senza cancellarla.
+
+sources:
+
+  mondo:
+    - { id: ansa,      name: "ANSA",          type: rss, kind: news, lang: it, weight: 1.0, url: "https://www.ansa.it/sito/ansait_rss.xml" }
+    - { id: bbc_world, name: "BBC News",     type: rss, kind: news, lang: en, weight: 1.1, url: "https://feeds.bbci.co.uk/news/world/rss.xml" }
+    - { id: guardian,  name: "The Guardian", type: rss, kind: news, lang: en, weight: 1.0, url: "https://www.theguardian.com/world/rss" }
+    - { id: aljazeera, name: "Al Jazeera",   type: rss, kind: news, lang: en, weight: 1.0, url: "https://www.aljazeera.com/xml/rss/all.xml" }
+    - { id: dw,        name: "DW",           type: rss, kind: news, lang: en, weight: 1.0, url: "https://rss.dw.com/rdf/rss-en-all" }
+
+  politica:
+    # --- Testate ---
+    - { id: ansa_pol,  name: "ANSA Politica", type: rss, kind: news, lang: it, weight: 1.0, url: "https://www.ansa.it/sito/notizie/politica/politica_rss.xml" }
+    - { id: repubblica_pol, name: "la Repubblica", type: rss, kind: news, lang: it, weight: 1.0, url: "https://www.repubblica.it/rss/politica/rss2.0.xml" }
+    - { id: corriere_pol, name: "Corriere della Sera", type: rss, kind: news, lang: it, weight: 1.0, url: "https://xml2.corriereobjects.it/rss/politica.xml" }
+    - { id: ilsole24ore, name: "Il Sole 24 Ore", type: rss, kind: news, lang: it, weight: 1.0, url: "https://www.ilsole24ore.com/rss/italia--politica.xml" }
+    - { id: fatto_pol, name: "Il Fatto Quotidiano", type: rss, kind: news, lang: it, weight: 0.9, url: "https://www.ilfattoquotidiano.it/politica-palazzo/feed/" }
+    - { id: giornale_pol, name: "il Giornale", type: rss, kind: news, lang: it, weight: 0.9, url: "https://www.ilgiornale.it/feed.xml", enabled: false }   # 404 il 21/09/2026: trova il feed con `newsbot discover https://www.ilgiornale.it`
+    - { id: libero, name: "Libero Quotidiano", type: rss, kind: news, lang: it, weight: 0.85, url: "https://www.liberoquotidiano.it/rss.xml"}
+    - { id: il_tempo, name: "Il Tempo", type: rss, kind: news, lang: it, weight: 0.95, url: "https://www.iltempo.it/rss.xml"}
+    - { id: la_stampa, name: "La Stampa", type: rss, kind: news, lang: it, weight: 0.9, url: "hhttps://www.lastampa.it/rss "}
+    # --- Posizione dichiarata dei partiti (fonti di parte: nel digest saranno etichettate) ---
+    - { id: fdi_sito,   name: "Fratelli d'Italia (sito)",  type: rss, kind: party, party: "FdI", lang: it, fulltext: true, url: "https://www.fratelli-italia.it/feed/" }
+    - { id: fdi_senato, name: "FdI Senato (comunicati)",   type: rss, kind: party, party: "FdI", lang: it, fulltext: true, url: "https://www.fratelliditaliasenato.it/categoria/comunicati-stampa/feed/" }
+    - { id: pd_sito,    name: "Partito Democratico (sito)", type: rss, kind: party, party: "PD",  lang: it, fulltext: true, url: "https://partitodemocratico.it/category/comunicati-stampa/feed/" }
+    - { id: pd_camera,  name: "PD Camera (comunicati)",     type: rss, kind: party, party: "PD",  lang: it, fulltext: true, url: "https://www.deputatipd.it/feed/" }
+    # 403 (blocca i bot): usa l'import manuale in data/manual/ o un altro canale ufficiale
+    # --- Social (richiedono scraper di terzi o import manuale: vedi README) ---
+    # - { id: fdi_ig, name: "FdI su Instagram", type: apify_instagram, kind: party, party: "FdI", handle: "fratelliditalia_official" }
+    # - { id: pd_ig,  name: "PD su Instagram",  type: apify_instagram, kind: party, party: "PD",  handle: "pd_italia" }
+    # --- Fact-checking (verdetti di terzi: si riportano attribuiti) ---
+    - { id: pagella,  name: "Pagella Politica", type: rss, kind: factcheck, lang: it, weight: 1.0, url: "https://pagellapolitica.it/feed" }
+    - { id: facta,    name: "Facta News",       type: rss, kind: factcheck, lang: it, weight: 1.0, url: "https://facta.news/feed", enabled: false }   # 404 il 21/09/2026: prova `newsbot discover https://facta.news`
+    - { id: open_fc,  name: "Open (fact-checking)", type: rss, kind: factcheck, lang: it, weight: 1.0, url: "https://www.open.online/c/fact-checking/feed/" }
+
+  scienza:
+    - { id: nature,     name: "Nature",            type: rss, kind: news, lang: en, weight: 1.3, url: "https://www.nature.com/nature.rss" }
+    - { id: science_daily, name: "ScienceDaily",   type: rss, kind: news, lang: en, weight: 0.9, url: "https://www.sciencedaily.com/rss/top/science.xml" }
+    - { id: guardian_sci, name: "The Guardian Science", type: rss, kind: news, lang: en, weight: 1.0, url: "https://www.theguardian.com/science/rss" }
+    - { id: bbc_health, name: "BBC Health",        type: rss, kind: news, lang: en, weight: 1.0, url: "https://feeds.bbci.co.uk/news/health/rss.xml" }
+    - { id: ansa_sci,   name: "ANSA Scienza",      type: rss, kind: news, lang: it, weight: 1.0, url: "https://www.ansa.it/sito/notizie/scienza/scienza_rss.xml", enabled: false }   # 404 il 21/09/2026: prova `newsbot discover https://www.ansa.it/sito/notizie/scienza/`
+    - { id: medrxiv,    name: "medRxiv (preprint)", type: rss, kind: news, lang: en, weight: 0.6, max_items: 15, timeout: 60, url: "https://connect.medrxiv.org/medrxiv_xml.php?subject=all" }
+
+  tech:
+    - { id: hn,        name: "Hacker News",   type: rss, kind: news, lang: en, weight: 0.8, url: "https://hnrss.org/frontpage?points=100" }
+    - { id: verge,     name: "The Verge",     type: rss, kind: news, lang: en, weight: 1.0, url: "https://www.theverge.com/rss/index.xml" }
+    - { id: ars,       name: "Ars Technica",  type: rss, kind: news, lang: en, weight: 1.1, url: "https://feeds.arstechnica.com/arstechnica/index" }
+    - { id: techcrunch, name: "TechCrunch",   type: rss, kind: news, lang: en, weight: 0.9, url: "https://techcrunch.com/feed/" }
+    - { id: wired,     name: "WIRED",         type: rss, kind: news, lang: en, weight: 1.0, url: "https://www.wired.com/feed/rss" }

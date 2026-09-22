@@ -1,0 +1,17 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    { "name": "newsbot: demo (offline)", "type": "debugpy", "request": "launch", "module": "newsbot",
+      "args": ["-v", "demo"], "envFile": "${workspaceFolder}/.env", "console": "integratedTerminal" },
+    { "name": "newsbot: check-sources", "type": "debugpy", "request": "launch", "module": "newsbot",
+      "args": ["check-sources"], "envFile": "${workspaceFolder}/.env", "console": "integratedTerminal" },
+    { "name": "newsbot: run (profilo a scelta)", "type": "debugpy", "request": "launch", "module": "newsbot",
+      "args": ["-v", "run", "-p", "${input:profile}"], "envFile": "${workspaceFolder}/.env", "console": "integratedTerminal" },
+    { "name": "pytest (file corrente)", "type": "debugpy", "request": "launch", "module": "pytest",
+      "args": ["${file}", "-x", "-q"], "console": "integratedTerminal" }
+  ],
+  "inputs": [
+    { "id": "profile", "type": "pickString", "description": "Profilo",
+      "options": ["mondo", "politica", "scienza", "tech"], "default": "tech" }
+  ]
+}

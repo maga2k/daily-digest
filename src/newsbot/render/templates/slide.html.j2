@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>{{ profile.label }} · slide {{ idx + 1 }}</title>
+<style>
+{{ fonts_css|safe }}
+{% include 'styles.css' %}
+</style>
+</head>
+<body class="{{ slide.type }}" style="--accent:{{ style.accent }};--accent-soft:{{ style.accent_soft }}">
+
+<div class="rail">{% for i in range(total) %}<i class="{{ 'on' if i <= idx else '' }}"></i>{% endfor %}</div>
+
+<main>
+{% if slide.type == 'cover' %}
+  <div class="day">{{ slide.day }}</div>
+  <h1><span class="fit" data-fit>{{ slide.title }}</span></h1>
+  <div class="label">{{ slide.subtitle }}</div>
+
+{% elif slide.type == 'story' %}
+  <div class="num">{{ slide.n }}</div>
+  <h2 class="fit" data-fit>{{ slide.headline }}</h2>
+  <ul class="fit" data-fit>
+    {% for b in slide.bullets %}<li>{{ b }}</li>{% endfor %}
+  </ul>
+  {% if slide.framing %}<div class="framing"><b>Come la raccontano</b>{{ slide.framing }}</div>{% endif %}
+  {% if slide.note %}<div class="note">{{ slide.note }}</div>{% endif %}
+  <div class="by">Fonti: {{ slide.source_names|join(', ') }}{% if slide.tone %} — {{ slide.tone }}{% endif %}</div>
+
+{% elif slide.type == 'versus' %}
+  <h2>{{ slide.heading }}</h2>
+  <div class="theme">{{ slide.theme }}</div>
+  <div class="cols">
+    {% for side in [slide.left, slide.right] %}
+    <div class="card" style="{% if side.color %}--c:{{ side.color }}{% endif %}">
+      <div class="who">{{ side.party_name }}</div>
+      <div class="say fit" data-fit>{{ side.text }}</div>
+      {% if side.quote %}<div class="quote fit" data-fit>«{{ side.quote }}»</div>{% endif %}
+      <div class="meta">{{ side.meta }}</div>
+    </div>
+    {% endfor %}
+    <div class="vs">vs</div>
+  </div>
+  <div class="banner">{{ slide.footer }}</div>
+
+{% elif slide.type == 'factcheck' %}
+  <h2>Fact-check di terzi</h2>
+  <div class="theme">{{ slide.theme }}</div>
+  {% if slide['items'] %}
+  <div class="fc-list">
+    {% for it in slide['items'] %}
+    <div class="fc"><b>Secondo {{ it.source }}</b><p>{{ it.title }}</p><small>{{ it.url }}</small></div>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty">Non verificato</div>
+  {% endif %}
+  <div class="note">{{ slide.note }}</div>
+
+{% elif slide.type == 'sources' %}
+  <h2>Fonti</h2>
+  <div class="src-list">
+    {% for g in slide.groups %}
+    <div class="src"><div class="n">{{ g.n }}</div>
+      <div><div class="h">{{ g.headline }}</div><div class="by">{{ g.names|join(', ') }}</div></div></div>
+    {% endfor %}
+  </div>
+  <div class="note">{{ slide.note }}</div>
+{% endif %}
+</main>
+
+<footer><span>{{ profile.handle }}</span><span>{{ profile.label }}</span></footer>
+
+<script>
+function fit(){
+  document.querySelectorAll('[data-fit]').forEach(function(el){
+    var s = parseFloat(getComputedStyle(el).fontSize);
+    while (el.scrollHeight > el.clientHeight + 1 && s > 20){ s -= 2; el.style.fontSize = s + 'px'; }
+  });
+}
+window.addEventListener('load', function(){ (document.fonts ? document.fonts.ready : Promise.resolve()).then(fit); });
+</script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+# Lista CHIUSA di temi per il profilo politica.
+# L'LLM deve scegliere solo tra questi; senza LLM si usa il match per parole chiave.
+# Partire con pochi temi rende molto più affidabile il confronto tra partiti.
+
+themes:
+  economia:
+    label: "Economia e manovra"
+    keywords: [manovra, legge di bilancio, pil, tasse, fisco, irpef, debito, deficit, inflazione, imprese, salari, stipendi, pensioni]
+  sanita:
+    label: "Sanità"
+    keywords: [sanità, sanitaria, ospedali, medici, infermieri, liste d'attesa, ssn, pronto soccorso, farmaci]
+  immigrazione:
+    label: "Immigrazione"
+    keywords: [immigrazione, migranti, sbarchi, rimpatri, asilo, cpr, frontiere, accoglienza]
+  lavoro:
+    label: "Lavoro"
+    keywords: [lavoro, occupazione, disoccupazione, salario minimo, precari, contratti, sindacati, reddito]
+  giustizia:
+    label: "Giustizia"
+    keywords: [giustizia, magistratura, carceri, processo, riforma della giustizia, intercettazioni, separazione delle carriere]
+  scuola:
+    label: "Scuola e università"
+    keywords: [scuola, università, studenti, docenti, insegnanti, istruzione, ricerca]
+  ambiente_energia:
+    label: "Ambiente ed energia"
+    keywords: [energia, clima, ambiente, rinnovabili, gas, bollette, nucleare, transizione]
+  esteri_difesa:
+    label: "Esteri e difesa"
+    keywords: [ucraina, nato, difesa, esteri, ue, unione europea, russia, medio oriente, israele, gaza]
+  diritti:
+    label: "Diritti civili"
+    keywords: [diritti, famiglia, adozioni, aborto, fine vita, lgbt, cittadinanza, ius scholae]
+  istituzioni:
+    label: "Riforme istituzionali"
+    keywords: [premierato, autonomia differenziata, riforma costituzionale, legge elettorale, referendum, parlamento]

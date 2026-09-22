@@ -1,0 +1,9 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    { "label": "Demo offline", "type": "shell", "command": "${command:python.interpreterPath} -m newsbot demo", "problemMatcher": [] },
+    { "label": "Fetch + process + generate", "type": "shell", "command": "${command:python.interpreterPath} -m newsbot run", "problemMatcher": [] },
+    { "label": "Test", "type": "shell", "command": "${command:python.interpreterPath} -m pytest -q", "problemMatcher": [] },
+    { "label": "Installa browser per gli screenshot", "type": "shell", "command": "${command:python.interpreterPath} -m playwright install chromium", "problemMatcher": [] }
+  ]
+}
