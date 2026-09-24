@@ -58,7 +58,7 @@ def plan_digest(profile: Profile, clusters: list[Cluster], llm: LLM, day: str) -
     if llm.enabled:
         llm_out = llm.json(prompts.system_for(profile.system_prompt),
                            prompts.digest_user_prompt(profile.label, _payload(top), profile.hashtags),
-                           max_tokens=3000)
+                           max_tokens=4500)
         if not isinstance(llm_out, dict) or "stories" not in llm_out:
             warnings.append("Risposta LLM non valida: uso il fallback euristico.")
             llm_out = None
@@ -105,7 +105,10 @@ def plan_digest(profile: Profile, clusters: list[Cluster], llm: LLM, day: str) -
                               for s in slides if s["type"] == "story"],
                    "note": "I link completi sono nel file fonti.json e nei commenti/bio."})
 
-    intro = (llm_out or {}).get("caption") or f"{profile.label} — le notizie principali di oggi:"
-    caption = build_caption(profile, intro, [] if (llm_out or {}).get("caption") else headlines)
+    llm_caption = (llm_out or {}).get("caption")
+    if llm_out and not llm_caption:
+        warnings.append("Il modello non ha restituito la caption: uso il fallback con i titoli.")
+    intro = llm_caption or f"{profile.label} — le notizie principali di oggi:"
+    caption = build_caption(profile, intro, [] if llm_caption else headlines)
     return PostPlan(profile_id=profile.id, post_type="digest", day=day, slides=slides,
                     caption=caption, sources=sources, warnings=warnings)

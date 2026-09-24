@@ -3,6 +3,7 @@ from __future__ import annotations
 
 import logging
 import re
+import json
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -24,6 +25,8 @@ from newsbot.processing.ranking import build_clusters, framing_spread
 from newsbot.processing.sentiment import SentimentScorer
 from newsbot.render.renderer import render_post
 from newsbot.utils import utcnow
+from newsbot.delivery.telegram import send_deepdive, send_for_review   # sostituisce l'import esistente di send_for_review
+from newsbot.posts.deepdive import build_deepdive
 
 log = logging.getLogger(__name__)
 
@@ -148,3 +151,24 @@ def run_review(ctx: Context, outputs: list[Path]) -> None:
         warnings = warnings_file.read_text(encoding="utf-8").splitlines() if warnings_file.exists() else []
         ok = send_for_review(ctx.settings, out, f"{out.parent.name}/{out.name}", warnings)
         print(f"{'inviato' if ok else 'NON inviato'}: {out}")
+
+# ---------------------------------------------------------------------- deepdive (Telegram)
+def run_deepdive(ctx: Context, profile_ids: list[str] | None = None, send: bool = False,
+                 now: datetime | None = None) -> None:
+    now = now or utcnow()
+    day = day_of(now)
+    for p in select_profiles(ctx, profile_ids):
+        dd = build_deepdive(ctx.db, p, ctx.llm, ctx.embedder, ctx.themes, day, now)
+        if dd is None:
+            print(f"[{p.id}/deepdive] niente da approfondire oggi")
+            continue
+        out = output_path(ctx, day, p.id, "deepdive")
+        out.mkdir(parents=True, exist_ok=True)
+        (out / "message.html").write_text(dd.html, encoding="utf-8")
+        (out / "fonti.json").write_text(json.dumps(dd.sources, ensure_ascii=False, indent=2), encoding="utf-8")
+        if dd.warnings:
+            (out / "DA_CONTROLLARE.txt").write_text("\n".join(f"- {w}" for w in dd.warnings), encoding="utf-8")
+        print(f"[{p.id}/deepdive] -> {out}" + (f"  ⚠ {len(dd.warnings)} avvisi" if dd.warnings else ""))
+        if send:
+            ok = send_deepdive(ctx.settings, dd.title, dd.html)
+            print(f"  {'inviato su Telegram' if ok else 'NON inviato'}")

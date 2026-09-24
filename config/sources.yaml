@@ -18,7 +18,9 @@ sources:
     - { id: guardian,  name: "The Guardian", type: rss, kind: news, lang: en, weight: 1.0, url: "https://www.theguardian.com/world/rss" }
     - { id: aljazeera, name: "Al Jazeera",   type: rss, kind: news, lang: en, weight: 1.0, url: "https://www.aljazeera.com/xml/rss/all.xml" }
     - { id: dw,        name: "DW",           type: rss, kind: news, lang: en, weight: 1.0, url: "https://rss.dw.com/rdf/rss-en-all" }
-
+    - { id: euronews, name: "Euronews", type: rss, kind: news, lang: en, weight: 0.9, url: "https://www.euronews.com/rss" }
+    - { id: politico_eu, name: "Politico Europe", type: rss, kind: news, lang: en, weight: 1.0, url: "https://www.politico.eu/feed/" }
+    - { id: independent, name: "Independent", type: rss, kind: news, lang: en, weight: 0.95, url: "https://www.independent.co.uk/rss" }
   politica:
     # --- Testate ---
     - { id: ansa_pol,  name: "ANSA Politica", type: rss, kind: news, lang: it, weight: 1.0, url: "https://www.ansa.it/sito/notizie/politica/politica_rss.xml" }
@@ -29,7 +31,9 @@ sources:
     - { id: giornale_pol, name: "il Giornale", type: rss, kind: news, lang: it, weight: 0.9, url: "https://www.ilgiornale.it/feed.xml", enabled: false }   # 404 il 21/09/2026: trova il feed con `newsbot discover https://www.ilgiornale.it`
     - { id: libero, name: "Libero Quotidiano", type: rss, kind: news, lang: it, weight: 0.85, url: "https://www.liberoquotidiano.it/rss.xml"}
     - { id: il_tempo, name: "Il Tempo", type: rss, kind: news, lang: it, weight: 0.95, url: "https://www.iltempo.it/rss.xml"}
-    - { id: la_stampa, name: "La Stampa", type: rss, kind: news, lang: it, weight: 0.9, url: "hhttps://www.lastampa.it/rss "}
+    - { id: la_stampa, name: "La Stampa", type: rss, kind: news, lang: it, weight: 0.9, url: "https://www.lastampa.it/rss"}
+    - { id: adnkronos, name: "adnkronos", type: rss, kind: news, lang: it, weight: 0.9, url: "https://www.adnkronos.com/rss.xml"}
+    - { id: huffingtonpost, name: "Huffington Post", type: rss, kind: news, lang: it, weight: 1.0, url: "https://www.huffingtonpost.it/rss"}
     # --- Posizione dichiarata dei partiti (fonti di parte: nel digest saranno etichettate) ---
     - { id: fdi_sito,   name: "Fratelli d'Italia (sito)",  type: rss, kind: party, party: "FdI", lang: it, fulltext: true, url: "https://www.fratelli-italia.it/feed/" }
     - { id: fdi_senato, name: "FdI Senato (comunicati)",   type: rss, kind: party, party: "FdI", lang: it, fulltext: true, url: "https://www.fratelliditaliasenato.it/categoria/comunicati-stampa/feed/" }
@@ -58,3 +62,13 @@ sources:
     - { id: ars,       name: "Ars Technica",  type: rss, kind: news, lang: en, weight: 1.1, url: "https://feeds.arstechnica.com/arstechnica/index" }
     - { id: techcrunch, name: "TechCrunch",   type: rss, kind: news, lang: en, weight: 0.9, url: "https://techcrunch.com/feed/" }
     - { id: wired,     name: "WIRED",         type: rss, kind: news, lang: en, weight: 1.0, url: "https://www.wired.com/feed/rss" }
+
+  economia:
+    - { id: ansa_eco,       name: "ANSA Economia",        type: rss, kind: news, lang: it, weight: 1.0, url: "https://www.ansa.it/sito/notizie/economia/economia_rss.xml" }
+    - { id: repubblica_eco, name: "la Repubblica Economia", type: rss, kind: news, lang: it, weight: 1.0, url: "https://www.repubblica.it/rss/economia/rss2.0.xml" }
+    - { id: sole24_eco,     name: "Il Sole 24 Ore",       type: rss, kind: news, lang: it, weight: 1.1, url: "https://www.ilsole24ore.com/rss/finanza.xml" }
+    - { id: mf,             name: "Milano Finanza",       type: rss, kind: news, lang: it, weight: 1.0, url: "https://www.milanofinanza.it/rss" }
+    - { id: investing_it,   name: "Investing.com Italia", type: rss, kind: news, lang: it, weight: 0.8, url: "https://it.investing.com/rss/news.rss" }
+    - { id: cnbc,           name: "CNBC",                 type: rss, kind: news, lang: en, weight: 0.9, url: "https://www.cnbc.com/id/100003114/device/rss/rss.html" }
+    - { id: marketwatch,    name: "MarketWatch",          type: rss, kind: news, lang: en, weight: 0.9, url: "https://feeds.content.dowjones.io/public/rss/mw_topstories" }
+    - { id: ft,    name: "Financial Times",      type: rss, kind: news, lang: en, weight: 1.0, url: "https://www.ft.com/rss/" }

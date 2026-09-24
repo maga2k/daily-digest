@@ -18,6 +18,43 @@ def _call(settings: Settings, method: str, **kwargs) -> dict:
     r.raise_for_status()
     return r.json()
 
+def _chunk_html(text: str, limit: int = 3800) -> list[str]:
+    """Spezza un messaggio HTML sui limiti di paragrafo, restando sotto il limite di Telegram (4096)."""
+    if len(text) <= limit:
+        return [text]
+    chunks, cur = [], ""
+    for para in text.split("\n\n"):
+        while len(para) > limit:               # un singolo paragrafo più lungo del limite: spezzalo comunque
+            if cur:
+                chunks.append(cur)
+                cur = ""
+            chunks.append(para[:limit])
+            para = para[limit:]
+        candidate = f"{cur}\n\n{para}" if cur else para
+        if len(candidate) > limit and cur:
+            chunks.append(cur)
+            cur = para
+        else:
+            cur = candidate
+    if cur:
+        chunks.append(cur)
+    return chunks
+
+
+def send_deepdive(settings: Settings, title: str, html: str, chat_id: str | None = None) -> bool:
+    """Invia l'approfondimento lungo, formattato in HTML. Va sulla chat 'deepdive' se configurata
+    (TELEGRAM_DEEPDIVE_CHAT_ID), altrimenti sulla stessa chat delle bozze da rivedere."""
+    if not settings.telegram_token:
+        log.warning("Telegram non configurato (TELEGRAM_BOT_TOKEN)")
+        return False
+    chat = chat_id or settings.telegram_deepdive_chat_id or settings.telegram_chat_id
+    if not chat:
+        log.warning("Nessuna chat di destinazione (TELEGRAM_CHAT_ID / TELEGRAM_DEEPDIVE_CHAT_ID)")
+        return False
+    for chunk in _chunk_html(html):
+        _call(settings, "sendMessage", data={"chat_id": chat, "text": chunk, "parse_mode": "HTML",
+                                             "disable_web_page_preview": True})
+    return True
 
 def send_for_review(settings: Settings, out_dir: Path, title: str, warnings: list[str] | None = None) -> bool:
     if not (settings.telegram_token and settings.telegram_chat_id):

@@ -9,6 +9,7 @@ description = "Bot che raccoglie notizie, le clusterizza e prepara caroselli Ins
 requires-python = ">=3.10"
 dependencies = [
   "feedparser>=6.0",
+  "ftfy>=6.2",
   "trafilatura>=1.12",
   "truststore>=0.9",           # certificati di sistema (macOS/Windows)
   "lxml_html_clean",          # richiesto da trafilatura con lxml recenti

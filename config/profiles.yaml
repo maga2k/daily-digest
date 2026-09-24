@@ -101,3 +101,22 @@ profiles:
     system_prompt: >
       Profilo tech. Tono diretto. Spiega in una riga perché la notizia conta.
       Distingui annunci di prodotto da risultati verificati o benchmark indipendenti.
+
+  economia:
+    <<: *defaults
+    label: "Economia e finanza"
+    top_n: 5
+    min_sources: 2
+    hashtags: ["#economia", "#finanza", "#mercati", "#borsa"]
+    style: { accent: "#0B6E4F", accent_soft: "#DAF0E6" }
+    ranking:
+      w_sources: 0.9
+      w_recency: 1.0
+      w_authority: 0.7
+      w_engagement: 0.1
+      half_life_hours: 10
+    system_prompt: >
+      Profilo economia e finanza. Riporta variazioni percentuali e cifre solo se compaiono
+      nel materiale fornito, mai stimate o arrotondate a sensazione. Distingui dati ufficiali
+      (ISTAT, BCE, Eurostat) da previsioni o opinioni di analisti, attribuendo sempre la fonte.
+      Non dare consigli di investimento.

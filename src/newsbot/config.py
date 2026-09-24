@@ -29,6 +29,7 @@ class Settings:
     sentiment_backend: str = "none"      # none | hf
     telegram_token: str | None = None
     telegram_chat_id: str | None = None
+    telegram_deepdive_chat_id: str | None = None   # se assente, usa telegram_chat_id
     apify_token: str | None = None
     user_agent: str = "newsbot/0.1 (progetto personale; rispetta robots.txt)"
     llm_provider: str = "anthropic"      # anthropic | openai_compatible
@@ -55,6 +56,7 @@ class Settings:
             sentiment_backend=e("NEWSBOT_SENTIMENT", "none"),
             telegram_token=e("TELEGRAM_BOT_TOKEN") or None,
             telegram_chat_id=e("TELEGRAM_CHAT_ID") or None,
+            telegram_deepdive_chat_id=e("TELEGRAM_DEEPDIVE_CHAT_ID") or None,
             apify_token=e("APIFY_TOKEN") or None,
             llm_provider=e("NEWSBOT_LLM_PROVIDER", "anthropic"),
             llm_api_key=e("NEWSBOT_LLM_API_KEY") or None,

@@ -1,12 +1,15 @@
-"""Wrapper minimale sull'SDK Anthropic. Senza chiave API `enabled` è False e i moduli
-chiamanti usano le versioni euristiche (utile per test e sviluppo offline)."""
+"""Wrapper minimale su Anthropic o su un'API compatibile OpenAI (Groq, OpenRouter, Gemini, Ollama...).
+Senza chiave `enabled` è False e i moduli chiamanti usano le versioni euristiche
+(utile per test e sviluppo offline)."""
 from __future__ import annotations
 
 import json
 import logging
 import re
-from typing import Any
 import time
+from typing import Any
+
+from ftfy import fix_text
 
 from newsbot.config import Settings
 
@@ -24,7 +27,7 @@ class LLM:
         elif self.provider == "openai_compatible" and settings.llm_api_key:
             import openai   # pip install -e ".[free-llm]"
             self._client = openai.OpenAI(api_key=settings.llm_api_key, base_url=settings.llm_base_url)
-        # rispetta i limiti del piano gratuito: attesa minima tra una chiamata e l'altra
+        # rispetta i limiti dei piani gratuiti: attesa minima tra una chiamata e l'altra
         default_interval = 2.1 if self.provider == "openai_compatible" else 0.0
         self.min_interval = settings.llm_min_interval if settings.llm_min_interval is not None else default_interval
         self._last_call = 0.0
@@ -44,12 +47,17 @@ class LLM:
                     model=self.model, max_tokens=max_tokens, system=system,
                     messages=[{"role": "user", "content": user}],
                 )
-                return "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
-            resp = self._client.chat.completions.create(
-                model=self.model, max_tokens=max_tokens,
-                messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
-            )
-            return resp.choices[0].message.content or ""
+                text = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
+            else:
+                resp = self._client.chat.completions.create(
+                    model=self.model, max_tokens=max_tokens,
+                    messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
+                )
+                text = resp.choices[0].message.content or ""
+            # alcuni provider (in particolare Groq con certi modelli) a volte restituiscono testo con
+            # una codifica dei caratteri corrotta ("Ã¨" invece di "è"): ftfy la ripara qui, una volta
+            # per tutte, cosi ogni comando che usa l'LLM (digest, versus, claims, deepdive) ne beneficia.
+            return fix_text(text)
         finally:
             self._last_call = time.monotonic()
 

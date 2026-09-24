@@ -97,6 +97,9 @@ def cmd_generate(args, settings):
     ctx = pipeline.build_context(settings)
     pipeline.run_generate(ctx, args.profiles, [args.type] if args.type else None, png=not args.no_png)
 
+def cmd_deepdive(args, settings):
+    ctx = pipeline.build_context(settings)
+    pipeline.run_deepdive(ctx, args.profiles, send=args.send)
 
 def cmd_review(args, settings):
     ctx = pipeline.build_context(settings)
@@ -174,6 +177,12 @@ def main(argv: list[str] | None = None) -> None:
     s.add_argument("--type", choices=["digest", "versus"], help="solo questo tipo di post")
     s.add_argument("--no-png", action="store_true", help="solo HTML, senza screenshot")
     s.set_defaults(fn=cmd_generate)
+
+    s = sub.add_parser("deepdive", help="approfondimento lungo (per Telegram), oltre al digest per Instagram")
+    _profiles_arg(s)
+    s.add_argument("--send", action="store_true",
+                   help="invia subito su Telegram (altrimenti resta solo in output/, da rivedere)")
+    s.set_defaults(fn=cmd_deepdive)
 
     s = sub.add_parser("review", help="invia le bozze di oggi su Telegram")
     _profiles_arg(s); s.set_defaults(fn=cmd_review)
