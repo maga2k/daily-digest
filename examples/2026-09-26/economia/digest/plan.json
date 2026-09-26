@@ -1,0 +1,220 @@
+{
+  "profile_id": "economia",
+  "post_type": "digest",
+  "day": "2026-09-26",
+  "slides": [
+    {
+      "type": "cover",
+      "title": "Gasolio, pacchi extra-Ue, banche: cosa cambia per te",
+      "subtitle": "Economia e finanza",
+      "day": "26 settembre 2026"
+    },
+    {
+      "type": "story",
+      "n": 1,
+      "headline": "Gasolio: Eni fissa un tetto ai prezzi",
+      "bullets": [
+        "Eni annuncia un tetto ai prezzi dei carburanti per un mese.",
+        "Il gasolio oggi potrebbe raggiungere quota 2,4 euro secondo la Repubblica.",
+        "Assotir evoca lo sciopero; il governo ringrazia Eni."
+      ],
+      "framing": null,
+      "note": null,
+      "tone": null,
+      "source_names": [
+        "ANSA Economia",
+        "la Repubblica Economia"
+      ]
+    },
+    {
+      "type": "story",
+      "n": 2,
+      "headline": "Nuova tassa di 2 euro sui pacchi extra-Ue",
+      "bullets": [
+        "L'Ue formalizza una commissione di gestione di 2 euro sui pacchi extra-Ue.",
+        "La misura entra in vigore l'1 novembre.",
+        "Si aggiunge al dazio di 3 euro sui pacchi sotto i 150 euro."
+      ],
+      "framing": null,
+      "note": null,
+      "tone": null,
+      "source_names": [
+        "ANSA Economia",
+        "la Repubblica Economia"
+      ]
+    },
+    {
+      "type": "story",
+      "n": 3,
+      "headline": "Bpm: Castagna critica l'offerta di Mps",
+      "bullets": [
+        "Castagna definisce l'offerta di Mps una operazione a sconto.",
+        "L'ad di Bpm cita la passivity rule come ostacolo alle mosse.",
+        "Unicredit smentisce eventuali interessi per la vicenda."
+      ],
+      "framing": null,
+      "note": null,
+      "tone": null,
+      "source_names": [
+        "ANSA Economia",
+        "la Repubblica Economia"
+      ]
+    },
+    {
+      "type": "story",
+      "n": 4,
+      "headline": "Bankitalia interviene su Ifis dopo ispezione",
+      "bullets": [
+        "Bankitalia richiede nuovi piani di governance a Ifis.",
+        "L'ispezione ha prodotto un esito parzialmente sfavorevole.",
+        "I rilievi riguardano antiriciclaggio, compliance e gestione Npl."
+      ],
+      "framing": null,
+      "note": null,
+      "tone": null,
+      "source_names": [
+        "ANSA Economia",
+        "la Repubblica Economia"
+      ]
+    },
+    {
+      "type": "story",
+      "n": 5,
+      "headline": "Primo doppio collocamento Btp Valore",
+      "bullets": [
+        "Il collocamento si terrà dal 19 al 23 ottobre.",
+        "Saranno emessi Btp Valore e Btp Valore Insieme.",
+        "Entrambi i titoli hanno durata di 5 anni con piani cedolari diversi."
+      ],
+      "framing": null,
+      "note": null,
+      "tone": null,
+      "source_names": [
+        "ANSA Economia",
+        "la Repubblica Economia"
+      ]
+    },
+    {
+      "type": "sources",
+      "groups": [
+        {
+          "n": 1,
+          "headline": "Gasolio: Eni fissa un tetto ai prezzi",
+          "names": [
+            "ANSA Economia",
+            "la Repubblica Economia"
+          ]
+        },
+        {
+          "n": 2,
+          "headline": "Nuova tassa di 2 euro sui pacchi extra-Ue",
+          "names": [
+            "ANSA Economia",
+            "la Repubblica Economia"
+          ]
+        },
+        {
+          "n": 3,
+          "headline": "Bpm: Castagna critica l'offerta di Mps",
+          "names": [
+            "ANSA Economia",
+            "la Repubblica Economia"
+          ]
+        },
+        {
+          "n": 4,
+          "headline": "Bankitalia interviene su Ifis dopo ispezione",
+          "names": [
+            "ANSA Economia",
+            "la Repubblica Economia"
+          ]
+        },
+        {
+          "n": 5,
+          "headline": "Primo doppio collocamento Btp Valore",
+          "names": [
+            "ANSA Economia",
+            "la Repubblica Economia"
+          ]
+        }
+      ],
+      "note": "I link completi sono nel file fonti.json e nei commenti/bio."
+    }
+  ],
+  "caption": "Quattro fronti aperti tra energia, commercio e banche.\n\nIl costo del gasolio sale e Eni annuncia un tetto ai prezzi per un mese. Assotir evoca lo sciopero mentre il governo ringrazia la compagnia.\n\nL'Ue ha fissato a 2 euro la commissione di gestione sui pacchi extra-Ue. La misura entra in vigore l'1 novembre e si aggiunge al dazio già in vigore.\n\nCastagna boccia l'offerta di Mps, definendola a sconto e non a premio. L'ad di Bpm sottolinea la difficoltà di muoversi per passivity rule, mentre Unicredit smentisce l'interesse.\n\nBankitalia richiede a Ifis nuovi piani dopo un'ispezione con esito parzialmente sfavorevole. I rilievi riguardano i processi interni e la governance.\n\nInfine, il Tesoro prepara il primo doppio collocamento di Btp Valore e Btp Valore Insieme, entrambi a 5 anni.\n\nTra rincari, norme comunitarie e sorveglianza bancaria, l' attenzione si sposta sui margini di manovra delle aziende e sulla gestione del rischio.\n\nFonti e link nell'ultima slide.\n\nSintesi generata con l'aiuto di un'IA e verificata da una persona.\n\n#economia #finanza #mercati #borsa",
+  "sources": [
+    {
+      "name": "ANSA Economia",
+      "url": "https://www.ansa.it/sito/notizie/economia/2026/09/25/sale-il-costo-del-gasolio-ma-leni-mette-un-tetto-ai-prezzi_94d83426-2bbc-400c-a017-36aab3b4da40.html",
+      "title": "Sale il costo del gasolio, ma l'Eni mette un tetto ai prezzi",
+      "domain": "ansa.it"
+    },
+    {
+      "name": "la Repubblica Economia",
+      "url": "https://www.repubblica.it/economia/2026/09/26/news/accise_sconto_eni_tetto_prezzo_carburanti-425608066/?rss",
+      "title": "Accise, si dimezza lo sconto. Eni si muove sui carburanti, tetto ai prezzi per un mese",
+      "domain": "repubblica.it"
+    },
+    {
+      "name": "ANSA Economia",
+      "url": "https://www.ansa.it/sito/notizie/economia/2026/09/25/ue-fissa-a-2-euro-la-commissione-di-gestione-sui-pacchi-extra-ue_7fc938fa-c7ef-4168-8558-3ca334aa92f0.html",
+      "title": "Ue fissa a 2 euro la commissione di gestione sui pacchi extra-Ue",
+      "domain": "ansa.it"
+    },
+    {
+      "name": "ANSA Economia",
+      "url": "https://www.ansa.it/sito/notizie/economia/2026/09/25/lue-fissa-a-2-euro-la-commissione-di-gestione-sui-pacchi-extra-ue_148c1977-a1e7-4d17-92c2-b2fb531540f8.html",
+      "title": "L'Ue fissa a 2 euro la commissione di gestione sui pacchi extra-Ue",
+      "domain": "ansa.it"
+    },
+    {
+      "name": "la Repubblica Economia",
+      "url": "https://www.repubblica.it/economia/2026/09/26/news/pacchi_cinesi_altra_tassa_da_due_euro_commissione_ue-425608178/?rss",
+      "title": "Pacchi cinesi, altra tassa da due euro",
+      "domain": "repubblica.it"
+    },
+    {
+      "name": "la Repubblica Economia",
+      "url": "https://www.repubblica.it/economia/2026/09/25/news/ue_2_euro_commissione_extra_ue-425607167/?rss",
+      "title": "Ue, arriva un’altra commissione sui prodotti extra Ue: 2 euro in più ad articolo",
+      "domain": "repubblica.it"
+    },
+    {
+      "name": "ANSA Economia",
+      "url": "https://www.ansa.it/sito/notizie/economia/2026/09/25/castagna-offerta-di-mps-purtroppo-e-a-sconto-e-non-a-premio_93d50707-1010-4fe4-a132-3ccefaf83ce0.html",
+      "title": "Castagna, 'offerta di Mps purtroppo è a sconto e non a premio'",
+      "domain": "ansa.it"
+    },
+    {
+      "name": "la Repubblica Economia",
+      "url": "https://www.repubblica.it/economia/2026/09/26/news/castagna_boccia_offerta_mps_partner_con_i_soci-425608295/?rss",
+      "title": "Castagna boccia l’offerta Mps. “Scelgo il partner con i soci”",
+      "domain": "repubblica.it"
+    },
+    {
+      "name": "ANSA Economia",
+      "url": "https://www.ansa.it/sito/notizie/economia/2026/09/25/bankitalia-dopo-ispezione-richiede-a-ifis-nuovi-piani-e-misure-governance_e3576fa5-4614-47f7-a8f8-8a2a028be53c.html",
+      "title": "Bankitalia, dopo ispezione richiede a Ifis nuovi piani e misure governance",
+      "domain": "ansa.it"
+    },
+    {
+      "name": "la Repubblica Economia",
+      "url": "https://www.repubblica.it/economia/2026/09/26/news/bankitalia_interviene_su_banca_ifis_e_il_titolo_crolla_in_borsa-425608343/?rss",
+      "title": "Bankitalia interviene su Banca Ifis e il titolo crolla in Borsa",
+      "domain": "repubblica.it"
+    },
+    {
+      "name": "ANSA Economia",
+      "url": "https://www.ansa.it/sito/notizie/economia/2026/09/25/dal-19-a-23-ottobre-primo-collocamento-doppio-btp-valore-e-btp-valore-insieme_c0f5300f-0195-406f-9fe7-87a396219366.html",
+      "title": "Dal 19 a 23 ottobre primo collocamento 'doppio' Btp Valore e Btp Valore Insieme",
+      "domain": "ansa.it"
+    },
+    {
+      "name": "la Repubblica Economia",
+      "url": "https://www.repubblica.it/economia/2026/09/25/news/btp_valore_ottobre_2026_prossima_emissione-425606678/?rss",
+      "title": "Btp Valore, dal 19 al 23 ottobre il primo doppio collocamento del Tesoro",
+      "domain": "repubblica.it"
+    }
+  ],
+  "warnings": []
+}

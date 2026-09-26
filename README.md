@@ -1,127 +1,206 @@
 # newsbot
 
-Bot che raccoglie notizie da più fonti, le raggruppa per evento, le ordina e prepara **caroselli Instagram**
-(slide PNG 1080×1350 + caption + fonti) per **revisione umana**. Nessuna pubblicazione automatica.
+A bot that pulls news from multiple sources, clusters them by event, ranks them, and drafts
+**Instagram carousel posts** (PNG slides + caption + sources) for **human review**. No
+auto-publishing. It can also produce a longer-form write-up for **Telegram**, meant as a deeper
+follow-up to the short Instagram version (e.g. for a separate, possibly paid, channel).
 
-Profili inclusi: `mondo`, `politica`, `scienza`, `tech`. Per aggiungerne uno basta una voce in
-`config/profiles.yaml` e le sue fonti in `config/sources.yaml`.
+**This project targets an Italian-speaking audience.** All prompts, generated captions, source
+lists and the `politica` profile are built around Italian news and Italian politics; the code and
+this README are in English, everything the bot *writes* is in Italian.
 
-```
-fonti (RSS / siti / social)  ->  SQLite  ->  clustering per evento  ->  ranking
-      -> [politica] claim per partito + fact-check di terzi + programma
-      -> LLM: testi slide + caption  ->  HTML/CSS -> PNG  ->  output/  (+ Telegram per revisione)
-```
+Built-in profiles: `mondo` (world news), `politica` (Italian politics, with claim extraction and
+fact-check linking), `scienza` (science/health), `economia` (economy/finance), `tech`. Adding a
+new one is just a config entry in `config/profiles.yaml` + `config/sources.yaml` — see
+"Adding a profile" below.
 
-## Avvio rapido (VS Code)
+\```
+sources (RSS / sites / social)  ->  SQLite  ->  clustering by event  ->  ranking
+      -> [politica] per-party claims + third-party fact-checks + party program excerpts
+      -> LLM: slide text + caption, or a long-form Telegram write-up
+      -> HTML/CSS -> PNG  ->  output/  (+ optional Telegram delivery for review)
+\```
 
-```bash
+## Example output
+
+## Example output
+
+See [`examples/`](examples/) for a real, dated snapshot of the pipeline's output across the
+`mondo`, `economia` and `politica` profiles (digest + deepdive for each) — reviewed by hand before
+being committed. For a fictional dataset you can regenerate yourself risk-free, run `python -m
+newsbot demo` (see "Quick start" below).
+
+## Quick start (VS Code)
+
+\```bash
 python -m venv .venv
 source .venv/bin/activate            # Windows: .venv\Scripts\activate
-pip install -e ".[dev]"              # base, leggero
-python -m playwright install chromium   # serve per i PNG
+pip install -e ".[dev]"              # base install, lightweight
+python -m playwright install chromium   # needed to render PNG slides
 cp .env.example .env
 
-python -m newsbot demo               # prova tutto su dati FITTIZI, senza rete né chiavi
-```
+python -m newsbot demo               # runs the whole pipeline on FAKE data, no network, no keys needed
+\```
 
-Poi apri `output/demo/<data>/<profilo>/<tipo>/preview.html`. Le stesse azioni sono nei
-**Run and Debug** (F5) e nei **Tasks** di VS Code (`.vscode/`).
+Then open `output/demo/<date>/<profile>/<post-type>/preview.html`. The same actions are wired up
+in VS Code's **Run and Debug** (F5) and **Tasks** (`.vscode/`).
 
-Per il salto di qualità (clustering multilingua IT/EN) installa gli embeddings locali:
+For better clustering (matching Italian/English titles about the same event), install local
+multilingual embeddings:
+\```bash
+pip install -e ".[ml]"               # sentence-transformers, ~2 GB with torch
+\```
+Without it, the bot falls back to TF-IDF — fine for a first try, but it won't match titles across
+languages.
 
-```bash
-pip install -e ".[ml]"               # sentence-transformers, ~2 GB con torch
-```
+## Real usage
 
-Senza, il bot usa TF-IDF: va bene per provare, ma non accoppia titoli in lingue diverse.
+\```bash
+python -m newsbot check-sources           # see which feeds actually work (URLs change over time!)
+python -m newsbot run -p tech             # fetch + process + generate for one profile
+python -m newsbot deepdive -p politica    # long-form write-up, saved for review (not sent yet)
+python -m newsbot deepdive -p politica --send   # ...and send it to Telegram
+python -m newsbot run --review            # all profiles + push drafts to Telegram
+\```
 
-## Uso reale
+`scripts/morning.sh` runs `run` + `clusters` for a fixed list of profiles in sequence, logging to
+`logs/`, and keeps going if one profile fails. Edit the `PROFILES=(...)` line to your liking.
 
-```bash
-python -m newsbot check-sources      # verifica quali feed funzionano (gli URL cambiano!)
-python -m newsbot run -p tech        # fetch + process + generate per un profilo
-python -m newsbot run --review       # tutti i profili + invio bozze su Telegram
-```
+Other commands: `fetch`, `manual`, `programs`, `process`, `generate [--type digest|versus]`,
+`review`, `posts`, `clusters -p <profile>` (inspect today's clusters), `discover <site-url>`
+(find a site's RSS feed).
 
-Comandi singoli: `fetch`, `manual`, `programs`, `process`, `generate [--type digest|versus]`, `review`, `posts`.
+Without an LLM configured, the bot runs in **heuristic mode**: no calls out, first-sentence
+summaries instead of rewritten prose, and every output folder gets a `DA_CONTROLLARE.txt`
+("to review") flagging what it had to fall back on. Nothing is ever silently empty.
 
-Strumenti di diagnosi:
-- `check-sources`: prova ogni fonte e spiega perché fallisce (HTTP, tipo di contenuto, blocchi).
-- `discover https://sito.it`: trova i feed RSS di un sito.
-- `clusters -p tech`: mostra i cluster di oggi, per controllare che il raggruppamento abbia senso.
-- In `sources.yaml`, `enabled: false` disattiva una fonte; in `profiles.yaml`, `exclude_title_patterns` scarta titoli promozionali.
+## LLM providers
 
-Senza `ANTHROPIC_API_KEY` il bot funziona in modalità euristica (utile per sviluppare); ogni post
-generato così contiene un file `DA_CONTROLLARE.txt` che te lo segnala.
+The pipeline supports two backends:
 
-## Struttura
+- **Anthropic** (`ANTHROPIC_API_KEY` in `.env`) — no permanent free tier, but the best
+  quality/JSON-reliability tradeoff, especially for the `politica` profile's claim extraction.
+- **Any OpenAI-compatible endpoint** (`NEWSBOT_LLM_PROVIDER=openai_compatible` +
+  `NEWSBOT_LLM_API_KEY` + `NEWSBOT_LLM_BASE_URL` + `NEWSBOT_MODEL`) — this covers **Groq** (free
+  tier, fast, hosts Llama/Qwen), **OpenRouter**, **Google Gemini**, and **Ollama** running fully
+  locally on your own machine. Install with `pip install -e ".[free-llm]"`.
 
-```
+Example `.env` for Groq:
+\```
+NEWSBOT_LLM_PROVIDER=openai_compatible
+NEWSBOT_LLM_API_KEY=gsk_...
+NEWSBOT_LLM_BASE_URL=https://api.groq.com/openai/v1
+NEWSBOT_MODEL=llama-3.3-70b-versatile   # check what your account actually has access to: GET /openai/v1/models
+\```
+
+Free/open models are noticeably weaker on strict JSON output and on Italian prose quality than
+Anthropic's models — the code degrades gracefully when a response can't be parsed (same
+`DA_CONTROLLARE.txt` mechanism), but for the `politica` profile specifically (claim extraction,
+quote validation) a stronger model is worth the cost once you're past prototyping.
+
+## Structure
+
+\```
 config/
-  profiles.yaml    profili: ranking, stile, prompt, partiti da confrontare, hashtag
-  sources.yaml     fonti per profilo (tipo, peso/autorevolezza, partito)
-  themes.yaml      lista CHIUSA di temi politici + parole chiave
+  profiles.yaml    profiles: ranking weights, style, prompts, parties to compare, hashtags
+  sources.yaml     sources per profile (type, weight/authority, party, enabled flag)
+  themes.yaml      CLOSED list of political topics + keywords (claim extraction only picks from this)
 src/newsbot/
-  cli.py           comandi
-  pipeline.py      orchestrazione fetch -> process -> generate -> review
-  db.py            schema SQLite
-  fetchers/        rss, web (trafilatura), apify (social di terzi), manual (CSV)
-  processing/      embeddings, clustering, ranking, sentiment (opzionale)
-  politics/        claims (per tema), factcheck (link a verifiche di terzi), programs (programmi)
-  posts/           digest (top N storie), versus (partito A vs B, fact-check, programma)
-  llm/             client Anthropic + prompt (tutti in prompts.py)
-  render/          template Jinja + CSS delle slide, screenshot Playwright
-  delivery/        Telegram
-  demo.py          dati fittizi per provare tutto offline
-data/manual/       CSV con post social incollati a mano
-data/programs/     programmi elettorali (PDF/txt) da indicizzare
-assets/fonts/      i tuoi font (vedi sotto)
-tests/             pytest (13 test, girano offline)
-```
+  cli.py           commands
+  pipeline.py      fetch -> process -> generate -> deepdive -> review orchestration
+  db.py            SQLite schema
+  fetchers/        rss, web (trafilatura), apify (third-party social scraping), manual (CSV import),
+                   discover (finds a site's RSS feed)
+  processing/      embeddings, clustering, ranking, sentiment (optional)
+  politics/        claims (per topic), factcheck (links to third-party verifications), programs
+                   (party manifestos, chunked + searched by similarity)
+  posts/           digest (top N stories), versus (party A vs B + fact-check + program),
+                   deepdive (long-form Telegram write-up)
+  llm/             Anthropic / OpenAI-compatible client + all prompts (prompts.py)
+  render/          Jinja templates + CSS for the slides, Playwright screenshots
+  delivery/        Telegram (review drafts, and the deepdive long-form message)
+  demo.py          fictional data to try the whole thing offline
+data/manual/       CSV files with hand-pasted social posts
+data/programs/     party manifestos (PDF/txt) to index
+assets/fonts/      your own fonts (see below)
+scripts/morning.sh daily driver script
+tests/             pytest, all run offline
+\```
 
-## Come funziona il profilo politica
+## How the `politica` profile works
 
-1. **Fonti di parte** (`kind: party`): siti/social dei partiti. Nel post compaiono come "secondo FdI…", mai come fatti.
-2. **Claim per tema**: l'LLM estrae fino a 3 affermazioni per comunicato, scegliendo solo dai temi di `themes.yaml`.
-   Le citazioni letterali vengono **validate** (devono comparire nel testo, max 15 parole), altrimenti scartate.
-3. **Confronto simmetrico**: per il tema con più claim di *entrambi* i partiti in `versus_parties`, stesso prompt e
-   stessa lunghezza per ciascuno.
-4. **Fact-check di terzi** (`kind: factcheck`): si cercano per similarità quelli già pubblicati e si riportano
-   attribuiti ("Secondo Pagella Politica"). Se non ce ne sono, la slide dice **"Non verificato"**. Il bot non emette verdetti.
-5. **Programma**: se hai messo i programmi in `data/programs/`, la slide "Cosa c'era nel programma" mostra il passaggio più vicino.
+1. **Party sources** (`kind: party`): party websites/social. In posts they always show up as
+   "according to Party X", never as plain facts.
+2. **Claims per topic**: the LLM extracts up to 3 claims per press release, picking only from the
+   closed topic list in `themes.yaml`. Literal quotes are **validated** against the source text
+   (must actually appear there, max 15 words) — anything else is dropped rather than risk a
+   fabricated quote.
+3. **Symmetric comparison**: for the topic with the most claims from *both* parties in
+   `versus_parties`, the same prompt and the same length constraints are applied to each side.
+4. **Third-party fact-checks** (`kind: factcheck`): matched by similarity and reported attributed
+   ("According to Pagella Politica..."). If none are found, the slide/message says **"not
+   verified"** — the bot never issues its own verdict.
+5. **Party program excerpts**: if you've added manifestos under `data/programs/`, the closest
+   matching excerpt is shown next to the current claims.
+6. **`deepdive`**: reuses all of the above to write a longer, Telegram-formatted message instead
+   of a slide — one section per party, one section for fact-checks (or "not verified"), sources at
+   the end.
 
-## Social (Instagram / X)
+## Adding a profile
 
-Sono le fonti più difficili: le API ufficiali non permettono di leggere profili altrui (o costano), lo scraping diretto
-viola i ToS. Tre strade, dalla più semplice:
+It's pure configuration — no code changes. `economia` (economy/finance) was added this way; look
+at its blocks in `config/profiles.yaml` and `config/sources.yaml` as a template. In short: copy an
+existing profile block, adjust `label`, `hashtags`, `style`, `ranking` weights and
+`system_prompt`, then add a matching `sources:` list with real (verified!) RSS feeds.
 
-1. **Import manuale**: incolla i testi in un CSV in `data/manual/` (formato in `esempio.csv.example`) e lancia `manual`.
-2. **Scraper di terzi (Apify)**: decommenta le righe `apify_instagram` in `sources.yaml` e imposta `APIFY_TOKEN`.
-   Verifica costi, attore e ToS: è zona grigia.
-3. **X**: non implementato di proposito (API a pagamento e in continuo cambiamento). Punto di estensione: `fetchers/apify.py`.
+## Social media (Instagram / X)
 
-## Font e grafica
+These are the hardest sources to get automatically: official APIs don't let you read *other*
+accounts' posts (or charge for it), and direct scraping violates the platforms' terms. Three
+options, easiest first:
 
-Le slide sono HTML/CSS (`src/newsbot/render/templates/`). Colori per profilo in `profiles.yaml → style`.
-Per usare font tuoi: copia i file in `assets/fonts/` (es. `Newsreader.woff2`) e in `style` metti
-`font_serif: '"Newsreader", Georgia, serif'` (il nome è quello del file senza estensione).
-Il testo si rimpicciolisce da solo se non entra nella slide (`data-fit`).
+1. **Manual import**: paste text into a CSV under `data/manual/` (format in
+   `esempio.csv.example`), then run `manual`.
+2. **Third-party scraper (Apify)**: uncomment the `apify_instagram` lines in `sources.yaml` and set
+   `APIFY_TOKEN`. Check current pricing, the actor's exact schema, and the platform's terms — this
+   is a legal gray area.
+3. **X**: not implemented on purpose (the official API is paid and changes often). Extension point:
+   `fetchers/apify.py`.
 
-## Da sapere
+## Fonts and design
 
-- **Verifica gli URL dei feed** con `check-sources`: quelli in `sources.yaml` sono un punto di partenza, non garantiti.
-  Le fonti che falliscono vengono saltate senza bloccare le altre.
-- **Copyright**: si usano titoli e sommari dei feed; riassumi e linka, non riprodurre articoli. Niente foto di politici prese dal web.
-- **Revisione umana sempre**: sui contenuti politici un errore del bot è un errore tuo, pubblico.
-- **Bias delle fonti**: la scelta e i `weight` in `sources.yaml` sono decisioni editoriali. Rendile esplicite (ultima slide).
-- **Costi**: si clusterizza in locale e l'LLM lavora solo sui top N cluster (1 chiamata per digest, 1 per tema nel versus, 1 per comunicato per i claim).
-- **Robots.txt/ToS** dei siti dei partiti: controllali prima di attivare `type: web` o `fulltext: true` con frequenza alta.
+Slides are HTML/CSS (`src/newsbot/render/templates/`). Per-profile colors live in
+`profiles.yaml -> style`. To use your own fonts: drop the files into `assets/fonts/` (e.g.
+`Newsreader.woff2`) and set `font_serif: '"Newsreader", Georgia, serif'` in `style` (the name is
+the filename without extension). Text auto-shrinks if it doesn't fit (`data-fit`).
 
-## Idee per i prossimi passi
+## Things to know
 
-- Tuning soglie di clustering (`Embedder.THRESHOLDS`) e dei pesi di ranking con dati veri.
-- Confronto con le **votazioni** (open data Camera/Senato): "cosa dicono" vs "come votano".
-- Storico dei temi (trend settimanale) e rilevamento di storie "in crescita".
-- Cache persistente degli embeddings; Postgres se cresce il volume.
-- Storie Instagram (formato 1080×1920) dallo stesso template; upload via Graph API dopo approvazione.
-- Bottoni Telegram "approva / scarta / rigenera" che aggiornano `posts.status`.
+- **Verify feed URLs** with `check-sources` and `discover <site>`: the ones in `sources.yaml` are
+  a starting point, not guaranteed — sites change their RSS paths often, and some never had one.
+  Broken sources are skipped without blocking the rest of the pipeline; `enabled: false` disables
+  one without deleting the config.
+- **Copyright**: the bot uses feed titles/summaries, rewrites them, and links back — never
+  reproduces full articles. No stock photos of politicians pulled from the web.
+- **Human review, always** — especially for `politica`. A bad claim there is your mistake, in
+  public, not the code's.
+- **Source bias is an editorial choice**: which sources you include and their `weight` in
+  `sources.yaml` are decisions you're making, not neutral defaults. Make them explicit (the
+  sources slide already lists them).
+- **Cost**: clustering runs locally; the LLM only ever sees the top N clusters (roughly one call
+  per digest, one per topic in `versus`, one per party press release for claim extraction).
+- **robots.txt / ToS**: check them before turning on `type: web` or `fulltext: true` at any real
+  frequency on a site you don't control.
+- **AI content disclosure**: the `disclosure` field in each profile (shown on every caption) exists
+  for a reason — keep it on once an LLM is generating the text, both because it's honest and
+  because platform/regulatory rules increasingly expect it.
+
+## Ideas for next steps
+
+- Tune clustering thresholds (`Embedder.THRESHOLDS`) and ranking weights against real data, not demo data.
+- Compare "what they say" against "how they vote", using Camera/Senato open data.
+- Track topics over time (weekly trends, "rising" stories).
+- Persistent embeddings cache; Postgres if volume grows.
+- Instagram Stories format (1080×1920) from the same templates; Graph API upload after approval.
+- Telegram inline buttons ("approve / discard / regenerate") that update `posts.status`.
+- A paid Telegram channel/newsletter as a deeper follow-up to the free Instagram digest.

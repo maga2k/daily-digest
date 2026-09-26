@@ -1,0 +1,284 @@
+{
+  "profile_id": "mondo",
+  "post_type": "digest",
+  "day": "2026-09-26",
+  "slides": [
+    {
+      "type": "cover",
+      "title": "Da Air Force One ai mercati petroliferi: l'attualità internazionale oggi",
+      "subtitle": "Il mondo oggi",
+      "day": "26 settembre 2026"
+    },
+    {
+      "type": "story",
+      "n": 1,
+      "headline": "CNN esclusa da Air Force One per il viaggio di Trump",
+      "bullets": [
+        "La Casa Bianca ha impedito a CNN di accompagnare Trump in Tennessee.",
+        "Al Jazeera riferisce che prende il posto di CNN la rete Real America's Voice.",
+        "DW definisce l'episodio l'ultimo attacco dell'amministrazione alla rete."
+      ],
+      "framing": "Tutte le testate confermano il divieto; Al Jazeera specifica chi sostituisce il network.",
+      "note": null,
+      "tone": null,
+      "source_names": [
+        "Al Jazeera",
+        "BBC News",
+        "DW",
+        "Independent"
+      ]
+    },
+    {
+      "type": "story",
+      "n": 2,
+      "headline": "Iran propone piano per riaprire Hormuz in una settimana",
+      "bullets": [
+        "L'Iran offre di riaprire lo Stretto di Hormuz in 6 o 7 giorni dietro revoca sanzioni.",
+        "The Guardian nota che Teheran chiede anche la fine dei conflitti, incluso quello in Libano.",
+        "Un funzionario Usa ha confermato alla BBC discussioni costruttive tramite mediatori."
+      ],
+      "framing": "BBC e Al Jazeera citano 7 giorni, The Guardian menziona anche i 6 giorni e le condizioni aggiuntive.",
+      "note": null,
+      "tone": null,
+      "source_names": [
+        "Al Jazeera",
+        "BBC News",
+        "Euronews",
+        "The Guardian"
+      ]
+    },
+    {
+      "type": "story",
+      "n": 3,
+      "headline": "Papa Leone XIV avverte sui rischi dell'IA in visita in Francia",
+      "bullets": [
+        "Prima visita papale ufficiale in Francia da 18 anni; folla a Parigi e all'Eliseo.",
+        "Il Pontefice ha avvertito contro la perdita di umanità in un \"paradiso delle macchine\".",
+        "Euronews riferisce che incontrerà anche i sopravvissuti agli abusi e i leader UE."
+      ],
+      "framing": "Tutte le fonti convergono sull'avvertimento sull'IA; Euronews aggiunge il programma di incontri.",
+      "note": null,
+      "tone": null,
+      "source_names": [
+        "Al Jazeera",
+        "Euronews",
+        "The Guardian"
+      ]
+    },
+    {
+      "type": "story",
+      "n": 4,
+      "headline": "Muore britannico di 28 anni in caduta in Spagna",
+      "bullets": [
+        "L'alpinista è caduto circa 61 metri dalla vetta del Torrecerredo.",
+        "Il corpo è stato recuperato nei Picos de Europa, nel nord della Spagna.",
+        "The Guardian cita le autorità locali per confermare l'incidente."
+      ],
+      "framing": "The Guardian e Independent riportano fatti coerenti sul luogo e sulla dinamica.",
+      "note": null,
+      "tone": null,
+      "source_names": [
+        "Independent",
+        "The Guardian"
+      ]
+    },
+    {
+      "type": "story",
+      "n": 5,
+      "headline": "Arabia Saudita intercetta missili Houthi, petrolio in crisi",
+      "bullets": [
+        "Intersecati sei missili balistici Houthi diretti a Taif e Yanbu.",
+        "I prezzi del petrolio sono saliti a un massimo di una settimana.",
+        "Euronews ricorda il blocco navale dichiarato dagli Houthi lo scorso luglio."
+      ],
+      "framing": "The Guardian fornisce dettagli sulla traiettoria missilistica; Euronews contestualizza il blocco.",
+      "note": null,
+      "tone": null,
+      "source_names": [
+        "Euronews",
+        "The Guardian"
+      ]
+    },
+    {
+      "type": "sources",
+      "groups": [
+        {
+          "n": 1,
+          "headline": "CNN esclusa da Air Force One per il viaggio di Trump",
+          "names": [
+            "Al Jazeera",
+            "BBC News",
+            "DW",
+            "Independent"
+          ]
+        },
+        {
+          "n": 2,
+          "headline": "Iran propone piano per riaprire Hormuz in una settimana",
+          "names": [
+            "Al Jazeera",
+            "BBC News",
+            "Euronews",
+            "The Guardian"
+          ]
+        },
+        {
+          "n": 3,
+          "headline": "Papa Leone XIV avverte sui rischi dell'IA in visita in Francia",
+          "names": [
+            "Al Jazeera",
+            "Euronews",
+            "The Guardian"
+          ]
+        },
+        {
+          "n": 4,
+          "headline": "Muore britannico di 28 anni in caduta in Spagna",
+          "names": [
+            "Independent",
+            "The Guardian"
+          ]
+        },
+        {
+          "n": 5,
+          "headline": "Arabia Saudita intercetta missili Houthi, petrolio in crisi",
+          "names": [
+            "Euronews",
+            "The Guardian"
+          ]
+        }
+      ],
+      "note": "I link completi sono nel file fonti.json e nei commenti/bio."
+    }
+  ],
+  "caption": "La Casa Bianca esclude CNN da Air Force One mentre Teheran offre a Washington un piano in sette giorni per sbloccare la situazione in Medio Oriente.\n\nSeccità mediatica Usa: La Casa Bianca ha vietato a CNN di volare su Air Force One durante il viaggio di Trump in Tennessee. Secondo Al Jazeera, al suo posto ci sarà Real America's Voice. DW lo definisce l'ultimo attacco dell'amministrazione alla rete.\n\nDiplomazia iraniana: L'Iran propone agli Stati Uniti di riaprire lo Stretto di Hormuz in sei o sette giorni in cambio della revoca delle sanzioni petrolifere. Una fonte ufficiale Usa ha confermato alla BBC che sono in corso discussioni costruttive tramite mediatori.\n\nIl Papa avverte: Al suo arrivo in Francia, la prima visita papale ufficiale nel Paese da 18 anni, Papa Leone XIV ha avvertito del rischio di perdere l'umanità in un \"paradiso delle macchine\" legato all'intelligenza artificiale.\n\nTragedia in Spagna: Un alpinista britannico di 28 anni è morto dopo una caduta di circa 61 metri dalla vetta del Torrecerredo, nella catena dei Picos de Europa.\n\nTensioni in Arabia Saudita: La coalizione guidata dall'Arabia Saudita ha intercettato missili balistici lanciati dagli Houthi, facendo salire i prezzi del petrolio a un massimo di una settimana.\n\nIl filo che collega questi eventi è la crescente instabilità strategica nelle aree chiave, dall'energia alla tecnologia, e la pressione che ejercito sulle decisioni politiche internazionali.\n\nFonti e link nell'ultima slide.\n\nSintesi generata con l'aiuto di un'IA e verificata da una persona.\n\n#notizie #mondo #news #attualita",
+  "sources": [
+    {
+      "name": "BBC News",
+      "url": "https://www.bbc.co.uk/news/articles/cxq633770y16o?at_medium=RSS&at_campaign=rss",
+      "title": "White House bars CNN from travelling with Trump on Air Force One",
+      "domain": "bbc.co.uk"
+    },
+    {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/news/2026/9/26/white-house-bars-cnn-from-air-force-one-for-trumps-upcoming-trip?traffic_source=rss",
+      "title": "White House bars CNN from Air Force One for Trump’s upcoming trip",
+      "domain": "aljazeera.com"
+    },
+    {
+      "name": "DW",
+      "url": "https://www.dw.com/en/white-house-bars-cnn-from-covering-upcoming-trump-trip-broadcaster-says/a-79440241?maca=en-rss-en-all-1573-rdf",
+      "title": "White House bars CNN from covering upcoming Trump trip, broadcaster says",
+      "domain": "dw.com"
+    },
+    {
+      "name": "Independent",
+      "url": "https://www.independent.co.uk/news/world/americas/us-politics/cnn-ban-trump-air-force-one-b3056736.html",
+      "title": "White House bans CNN from Air Force One for Trump trip to Tennessee",
+      "domain": "independent.co.uk"
+    },
+    {
+      "name": "The Guardian",
+      "url": "https://www.theguardian.com/world/2026/sep/24/ed-miliband-meets-iran-foreign-minister-us-ultimatum-strait-hormuz",
+      "title": "Iran awaiting response from Trump on proposal to open strait of Hormuz in six days",
+      "domain": "theguardian.com"
+    },
+    {
+      "name": "BBC News",
+      "url": "https://www.bbc.co.uk/news/articles/cqgmrr9ekr7ko?at_medium=RSS&at_campaign=rss",
+      "title": "Iran offers US deal to reopen Strait of Hormuz in seven days",
+      "domain": "bbc.co.uk"
+    },
+    {
+      "name": "The Guardian",
+      "url": "https://www.theguardian.com/world/2026/sep/25/trump-tough-choices-iran-accelerated-deal-reopen-hormuz-midterm-elections",
+      "title": "Trump faces tough choices as Iran dangles deal to reopen Hormuz before US midterms",
+      "domain": "theguardian.com"
+    },
+    {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/video/newsfeed/2026/9/26/iran-pitches-us-a-seven-day-end-to-the-war-at-unga?traffic_source=rss",
+      "title": "Iran pitches US a seven-day end to the war at UNGA",
+      "domain": "aljazeera.com"
+    },
+    {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/news/liveblog/2026/9/26/iran-war-live-tehran-offers-us-plan-to-reopen-hormuz-within-seven-days?traffic_source=rss",
+      "title": "Iran war live: Tehran offers US plan to reopen Hormuz within seven days",
+      "domain": "aljazeera.com"
+    },
+    {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/news/2026/9/25/iran-says-it-awaits-us-response-on-seven-day-roadmap-to-end-war?traffic_source=rss",
+      "title": "Iran says it awaits US response on seven-day roadmap to end war",
+      "domain": "aljazeera.com"
+    },
+    {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/video/newsfeed/2026/9/25/iran-to-reopen-strait-of-hormuz-within-a-week-if-us-agrees-to-plan?traffic_source=rss",
+      "title": "Iran to reopen Strait of Hormuz within a week if US agrees to plan",
+      "domain": "aljazeera.com"
+    },
+    {
+      "name": "Euronews",
+      "url": "https://www.euronews.com/2026/09/25/iran-proposes-plan-to-us-to-reopen-hormuz-in-seven-days-and-end-the-war",
+      "title": "Iran proposes plan to US to reopen Hormuz in seven days and end the war",
+      "domain": "euronews.com"
+    },
+    {
+      "name": "Euronews",
+      "url": "https://www.euronews.com/2026/09/25/pope-makes-first-official-visit-to-france-in-18-years-meeting-abuse-survivors-and-eu-leade",
+      "title": "Pope makes first official visit to France in 18 years, meeting abuse survivors and EU leaders",
+      "domain": "euronews.com"
+    },
+    {
+      "name": "The Guardian",
+      "url": "https://www.theguardian.com/world/2026/sep/25/pope-leo-ai-threat-to-humanity-three-day-france-visit",
+      "title": "Pope Leo warns of AI threat to humanity at start of three-day France visit",
+      "domain": "theguardian.com"
+    },
+    {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/video/newsfeed/2026/9/26/pope-leo-xiv-makes-first-official-papal-visit-in-france-in-nearly-20?traffic_source=rss",
+      "title": "Pope Leo XIV makes first official Papal visit in France in nearly 20",
+      "domain": "aljazeera.com"
+    },
+    {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/news/2026/9/25/pope-leo-xiv-warns-ai-could-undermine-humanity-during-france-visit?traffic_source=rss",
+      "title": "Pope Leo XIV warns AI could undermine humanity during France visit",
+      "domain": "aljazeera.com"
+    },
+    {
+      "name": "Euronews",
+      "url": "https://www.euronews.com/video/2026/09/25/watch-pope-leo-xiv-warns-ai-could-threaten-humanity-in-paradise-of-machines",
+      "title": "Watch: Pope Leo XIV warns AI could threaten humanity in ‘paradise of machines’",
+      "domain": "euronews.com"
+    },
+    {
+      "name": "The Guardian",
+      "url": "https://www.theguardian.com/world/2026/sep/26/british-climber-28-dies-fall-spain-torrecerredo-mountain",
+      "title": "British climber, 28, dies in fall in northern Spain",
+      "domain": "theguardian.com"
+    },
+    {
+      "name": "Independent",
+      "url": "https://www.independent.co.uk/news/uk/home-news/mountaineer-death-spain-british-torrecerredo-cantabrian-b3056769.html",
+      "title": "British climber dies after falling down 200ft ravine in Spain’s Cantabrian Mountains",
+      "domain": "independent.co.uk"
+    },
+    {
+      "name": "The Guardian",
+      "url": "https://www.theguardian.com/world/2026/sep/25/saudi-arabia-intercepts-houthi-missiles-oil-prices-climbs",
+      "title": "Saudi Arabia intercepts wave of Houthi missiles as oil climbs to one-week high",
+      "domain": "theguardian.com"
+    },
+    {
+      "name": "Euronews",
+      "url": "https://www.euronews.com/2026/09/26/saudi-coalition-says-it-intercepted-houthi-drones-and-missiles-bound-for-saudi-arabia",
+      "title": "Saudi coalition says it intercepted Houthi drones and missiles bound for Saudi Arabia",
+      "domain": "euronews.com"
+    }
+  ],
+  "warnings": []
+}

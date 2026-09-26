@@ -1,0 +1,222 @@
+{
+  "profile_id": "politica",
+  "post_type": "digest",
+  "day": "2026-09-26",
+  "slides": [
+    {
+      "type": "cover",
+      "title": "Dalla guerra ai carburanti, cinque fronti aperti in Italia e nel mondo.",
+      "subtitle": "Politica",
+      "day": "26 settembre 2026"
+    },
+    {
+      "type": "story",
+      "n": 1,
+      "headline": "Putin: \"La Russia non prepara attacchi all'Europa\"",
+      "bullets": [
+        "Il presidente russo attribuisce all'Ucraina gli attacchi alle infrastrutture.",
+        "Lega la ripresa dei negoziati agli interessi di Mosca.",
+        "Kiev smentisce che Trump abbia chiesto a Zelensky di andare a Mosca."
+      ],
+      "framing": null,
+      "note": "Dichiarazioni politiche non verificate.",
+      "tone": null,
+      "source_names": [
+        "Huffington Post",
+        "La Stampa",
+        "adnkronos"
+      ]
+    },
+    {
+      "type": "story",
+      "n": 2,
+      "headline": "Addio a Elena Pero, la voce del tennis italiano",
+      "bullets": [
+        "Si è spenta la giornalista Elena Pero, collaboratrice di Sky.",
+        "Flavia Pennetta la ricorda come figura storica dello sport.",
+        "Il ricordo unisce testate diverse sul suo contributo al mondo del tennis."
+      ],
+      "framing": null,
+      "note": null,
+      "tone": null,
+      "source_names": [
+        "La Stampa",
+        "Libero Quotidiano"
+      ]
+    },
+    {
+      "type": "story",
+      "n": 3,
+      "headline": "Schlein e Renzi: dialogo sul programma del campo largo",
+      "bullets": [
+        "Schlein invita gli alleati a definire un programma partecipato.",
+        "Renzi invita De Luca alla Leopolda.",
+        "Mastella propone la Margherita 5.0 tra i moderati."
+      ],
+      "framing": null,
+      "note": null,
+      "tone": null,
+      "source_names": [
+        "ANSA Politica",
+        "la Repubblica"
+      ]
+    },
+    {
+      "type": "story",
+      "n": 4,
+      "headline": "Eni fissa un tetto ai prezzi di benzina e gasolio",
+      "bullets": [
+        "Dal 28 settembre: max 2,19 euro per gasolio, 1,99 per benzina.",
+        "Durata minima di 30 giorni, possibile estensione fino a fine anno.",
+        "Palazzo Chigi definisce l'atto lodevole."
+      ],
+      "framing": null,
+      "note": "La durata dipenderà dall'andamento del mercato.",
+      "tone": null,
+      "source_names": [
+        "Huffington Post",
+        "adnkronos"
+      ]
+    },
+    {
+      "type": "story",
+      "n": 5,
+      "headline": "Tensioni in Forza Italia dopo l'intitolazione dello scalo",
+      "bullets": [
+        "Paolo Zangrillo lascia la guida del partito in Piemonte.",
+        "Licia Ronzulli chiede una riflessione nei vertici.",
+        "La famiglia Berlusconi assicura il sostegno al partito."
+      ],
+      "framing": null,
+      "note": null,
+      "tone": null,
+      "source_names": [
+        "ANSA Politica",
+        "Huffington Post"
+      ]
+    },
+    {
+      "type": "sources",
+      "groups": [
+        {
+          "n": 1,
+          "headline": "Putin: \"La Russia non prepara attacchi all'Europa\"",
+          "names": [
+            "Huffington Post",
+            "La Stampa",
+            "adnkronos"
+          ]
+        },
+        {
+          "n": 2,
+          "headline": "Addio a Elena Pero, la voce del tennis italiano",
+          "names": [
+            "La Stampa",
+            "Libero Quotidiano"
+          ]
+        },
+        {
+          "n": 3,
+          "headline": "Schlein e Renzi: dialogo sul programma del campo largo",
+          "names": [
+            "ANSA Politica",
+            "la Repubblica"
+          ]
+        },
+        {
+          "n": 4,
+          "headline": "Eni fissa un tetto ai prezzi di benzina e gasolio",
+          "names": [
+            "Huffington Post",
+            "adnkronos"
+          ]
+        },
+        {
+          "n": 5,
+          "headline": "Tensioni in Forza Italia dopo l'intitolazione dello scalo",
+          "names": [
+            "ANSA Politica",
+            "Huffington Post"
+          ]
+        }
+      ],
+      "note": "I link completi sono nel file fonti.json e nei commenti/bio."
+    }
+  ],
+  "caption": "Economia e guerra si intrecciano mentre in Italia si ridefiniscono gli assetti.\n\nPutin indica Kiev per i negoziati, secondo La Stampa.\n\nSchlein e Renzi dialogano sulla sinistra.\n\nEni fissa i prezzi dei carburanti, il governo approva.\n\nZangrillo lascia il ruolo in Piemonte, tensioni in Forza Italia.\n\nGestione dei prezzi e alleanze: i nodi vengono al pettine.\n\nFonti e link nell'ultima slide.\n\nSintesi generata con l'aiuto di un'IA e verificata da una persona.\n\n#politica #italia #attualita #factchecking",
+  "sources": [
+    {
+      "name": "La Stampa",
+      "url": "https://www.lastampa.it/esteri/2026/09/26/diretta/guerra_russia_ucraina_news_oggi-15749497/",
+      "title": "A Zelensky l’ok di Trump per i Patriot, ma Putin frena sui negoziati: “Colpa degli attacchi di Kiev”",
+      "domain": "lastampa.it"
+    },
+    {
+      "name": "adnkronos",
+      "url": "https://www.adnkronos.com/internazionale/esteri/putin-russia-europa-guerra-nato-news-oggi_6xXFSOHq3wJy69dbOCvwnK",
+      "title": "Putin: \"Russia non vuole attaccare Europa. Ero pronto a colloqui, poi Ucraina ha colpito Mosca\"",
+      "domain": "adnkronos.com"
+    },
+    {
+      "name": "Huffington Post",
+      "url": "https://www.huffingtonpost.it/esteri/2026/09/25/news/putin_ostilita_europa_ucraina-22789069/",
+      "title": "Lo dice Putin: \"La Russia non prepara alcun attacco all'Europa\"",
+      "domain": "huffingtonpost.it"
+    },
+    {
+      "name": "La Stampa",
+      "url": "https://www.lastampa.it/sport/2026/09/25/news/sport_in_tv_addio_a_elena_pero_voce_del_tennis-15748285/",
+      "title": "Addio a Elena Pero, voce del tennis",
+      "domain": "lastampa.it"
+    },
+    {
+      "name": "Libero Quotidiano",
+      "url": "https://www.liberoquotidiano.it/news/49238016/undefined/",
+      "title": "Pennetta ricorda Elena Pero \"La sua voce per sempre nella storia del tennis\"",
+      "domain": "liberoquotidiano.it"
+    },
+    {
+      "name": "Libero Quotidiano",
+      "url": "https://www.liberoquotidiano.it/news/pillole/49238018/pennetta_ricorda_elena_pero_la_sua_voce_per_sempre_nella_storia_del_tennis_/",
+      "title": "Pennetta ricorda Elena Pero \"La sua voce per sempre nella storia del tennis\"",
+      "domain": "liberoquotidiano.it"
+    },
+    {
+      "name": "ANSA Politica",
+      "url": "https://www.ansa.it/sito/notizie/politica/2026/09/25/grandi-manovre-al-centro-e-renzi-invita-de-luca-alla-leopolda_88a9251d-d76b-47fa-ba5f-63c431fcdd5d.html",
+      "title": "Grandi manovre al centro e Renzi invita De Luca alla Leopolda",
+      "domain": "ansa.it"
+    },
+    {
+      "name": "la Repubblica",
+      "url": "https://www.repubblica.it/politica/2026/09/26/news/schlein_campo_largo_programma_partecipato_difesa_europea-425608279/?rss",
+      "title": "Schlein al campo largo: “Programma partecipato, sì alla difesa europea”",
+      "domain": "repubblica.it"
+    },
+    {
+      "name": "adnkronos",
+      "url": "https://www.adnkronos.com/politica/caro-carburanti-price-cap-tetto-al-prezzo-gasolio-benzina_1Pl1bNBPM2AGzy4VyGV92A",
+      "title": "Caro carburanti, Eni fissa un tetto al prezzo di benzina e gasolio. Il governo: \"Atto lodevole\"",
+      "domain": "adnkronos.com"
+    },
+    {
+      "name": "Huffington Post",
+      "url": "https://www.huffingtonpost.it/economia/2026/09/25/news/eni_mette_un_tetto_ai_prezzi_di_benzina_e_gasolio_per_almeno_30_giorni-22787825/",
+      "title": "Eni mette un tetto ai prezzi di benzina e gasolio. Per almeno 30 giorni. Palazzo Chigi ringrazia",
+      "domain": "huffingtonpost.it"
+    },
+    {
+      "name": "ANSA Politica",
+      "url": "https://www.ansa.it/sito/notizie/politica/2026/09/25/zangrillo-lascia-la-guida-in-piemonte-fi-si-rinnovi.-i-vertici-diano-lesempio_9ba96583-3801-4dae-b814-6402a9db9cd5.html",
+      "title": "Zangrillo lascia la guida in Piemonte: 'FI si rinnovi. I vertici diano l'esempio'",
+      "domain": "ansa.it"
+    },
+    {
+      "name": "Huffington Post",
+      "url": "https://www.huffingtonpost.it/politica/2026/09/25/news/forza_italia_laeroporto_berlusconi_e_quelli_che_malpensano-22788781/",
+      "title": "Forza Italia, l'aeroporto Berlusconi e quelli che Malpensano",
+      "domain": "huffingtonpost.it"
+    }
+  ],
+  "warnings": []
+}

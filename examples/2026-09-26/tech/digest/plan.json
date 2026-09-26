@@ -1,0 +1,134 @@
+{
+  "profile_id": "tech",
+  "post_type": "digest",
+  "day": "2026-09-26",
+  "slides": [
+    {
+      "type": "cover",
+      "title": "IA: dal campo minato legale alla produzione robotica",
+      "subtitle": "Tech",
+      "day": "26 settembre 2026"
+    },
+    {
+      "type": "story",
+      "n": 1,
+      "headline": "Pentagono e Anthropic: la corte dà ragione a Washington",
+      "bullets": [
+        "La corte d'appello consente al Pentagono di designare Anthropic come rischio",
+        "Anthropic aveva denunciato violazioni dei propri diritti",
+        "Un pannello diviso di giudici ha dato ragione all'amministrazione"
+      ],
+      "framing": null,
+      "note": null,
+      "tone": null,
+      "source_names": [
+        "Hacker News",
+        "WIRED"
+      ]
+    },
+    {
+      "type": "story",
+      "n": 2,
+      "headline": "Microsoft rimuove il branding Copilot+ PC dai nuovi laptop",
+      "bullets": [
+        "I nuovi Surface non portano più l'etichetta specifica Copilot+ PC",
+        "Microsoft sembra abbandonare l'insistenza su questo branding",
+        "Cambiamento nella strategia di marketing per i portatili"
+      ],
+      "framing": null,
+      "note": null,
+      "tone": null,
+      "source_names": [
+        "Ars Technica",
+        "Hacker News"
+      ]
+    },
+    {
+      "type": "story",
+      "n": 3,
+      "headline": "Tesla fatica a produrre i robot humanoidi Optimus",
+      "bullets": [
+        "L'obiettivo era 20.000 unità a settimana entro fine 2026",
+        "Nei fatti ne sono state prodotte diverse centinaia lo scorso mese",
+        "Le linee di Model S e X sono state riconvertite per Optimus"
+      ],
+      "framing": null,
+      "note": "Dati su produzione reale attribuiti a The Information tramite The Verge",
+      "tone": null,
+      "source_names": [
+        "Ars Technica",
+        "The Verge"
+      ]
+    },
+    {
+      "type": "sources",
+      "groups": [
+        {
+          "n": 1,
+          "headline": "Pentagono e Anthropic: la corte dà ragione a Washington",
+          "names": [
+            "Hacker News",
+            "WIRED"
+          ]
+        },
+        {
+          "n": 2,
+          "headline": "Microsoft rimuove il branding Copilot+ PC dai nuovi laptop",
+          "names": [
+            "Ars Technica",
+            "Hacker News"
+          ]
+        },
+        {
+          "n": 3,
+          "headline": "Tesla fatica a produrre i robot humanoidi Optimus",
+          "names": [
+            "Ars Technica",
+            "The Verge"
+          ]
+        }
+      ],
+      "note": "I link completi sono nel file fonti.json e nei commenti/bio."
+    }
+  ],
+  "caption": "Il destino dell'IA non si decide solo nei laboratori, ma anche nei tribunali e nelle fabbriche. \n\nSecondo WIRED, una corte d'appello statunitense ha consentito al Pentagono di classificare Anthropic come rischio per la catena di approvvigionamento. Anthropic aveva citato in giudizio l'amministrazione federale, ma i giudici hanno dato ragione al governo. \n\nPerché conta: questa decisione stabilisce un precedente sulla sovranità tecnologica e sui limiti legali delle aziende di intelligenza artificiale negli Stati Uniti. \n\nArs Technica riferisce che Microsoft non impone più la dicitura \"Copilot+ PC\" sui nuovi laptop Surface. Il colosso di Redmond abbandona l'insistenza sul branding specifico per la sua linea di portatili. \n\nHacker News segnala che The Information riporta difficoltà per Tesla nel raggiungere l'obiettivo di 20.000 robot Optimus a settimana. Lo scorso mese Tesla ha prodotto diverse centinaia di robot, nonostante la riconversione delle linee di produzione di Model S e Model X. \n\nIl filo comune è la tensione tra ambizioni tecnologiche e vincoli concreti: legali per l'IA generativa, di branding per il software, produttivi per l'hardware robotico.\n\nFonti e link nell'ultima slide.\n\nSintesi generata con l'aiuto di un'IA e verificata da una persona.\n\n#tech #ai #tecnologia #innovazione",
+  "sources": [
+    {
+      "name": "Hacker News",
+      "url": "https://www.cnbc.com/2026/09/25/pentagon-anthropic-ai-risk-appeals-court.html",
+      "title": "U.S. appeals court upholds designation of Anthropic as supply chain risk",
+      "domain": "cnbc.com"
+    },
+    {
+      "name": "WIRED",
+      "url": "https://www.wired.com/story/appeals-court-lets-the-pentagon-designate-anthropic-a-supply-chain-risk/",
+      "title": "Appeals Court Lets the Pentagon Designate Anthropic a Supply-Chain Risk",
+      "domain": "wired.com"
+    },
+    {
+      "name": "Hacker News",
+      "url": "https://www.bloomberg.com/news/articles/2026-09-25/microsoft-abandons-personal-ai-chatbot-race-with-copilot-reboot",
+      "title": "Microsoft abandons personal AI chatbot race with Copilot reboot",
+      "domain": "bloomberg.com"
+    },
+    {
+      "name": "Ars Technica",
+      "url": "https://arstechnica.com/gadgets/2026/09/microsoft-stops-insisting-you-need-a-copilot-pc/",
+      "title": "Microsoft stops insisting you need a \"Copilot+ PC\"",
+      "domain": "arstechnica.com"
+    },
+    {
+      "name": "The Verge",
+      "url": "https://www.theverge.com/tech/1000794/tesla-optimus-production-issues-hands",
+      "title": "Tesla’s Optimus robot is going through growing pains",
+      "domain": "theverge.com"
+    },
+    {
+      "name": "Ars Technica",
+      "url": "https://arstechnica.com/ai/2026/09/tesla-workers-balk-at-training-optimus-humanoid-robots-as-replacements/",
+      "title": "Tesla workers balk at training Optimus humanoid robots as replacements",
+      "domain": "arstechnica.com"
+    }
+  ],
+  "warnings": []
+}

@@ -1,0 +1,17 @@
+Il destino dell'IA non si decide solo nei laboratori, ma anche nei tribunali e nelle fabbriche. 
+
+Secondo WIRED, una corte d'appello statunitense ha consentito al Pentagono di classificare Anthropic come rischio per la catena di approvvigionamento. Anthropic aveva citato in giudizio l'amministrazione federale, ma i giudici hanno dato ragione al governo. 
+
+Perché conta: questa decisione stabilisce un precedente sulla sovranità tecnologica e sui limiti legali delle aziende di intelligenza artificiale negli Stati Uniti. 
+
+Ars Technica riferisce che Microsoft non impone più la dicitura "Copilot+ PC" sui nuovi laptop Surface. Il colosso di Redmond abbandona l'insistenza sul branding specifico per la sua linea di portatili. 
+
+Hacker News segnala che The Information riporta difficoltà per Tesla nel raggiungere l'obiettivo di 20.000 robot Optimus a settimana. Lo scorso mese Tesla ha prodotto diverse centinaia di robot, nonostante la riconversione delle linee di produzione di Model S e Model X. 
+
+Il filo comune è la tensione tra ambizioni tecnologiche e vincoli concreti: legali per l'IA generativa, di branding per il software, produttivi per l'hardware robotico.
+
+Fonti e link nell'ultima slide.
+
+Sintesi generata con l'aiuto di un'IA e verificata da una persona.
+
+#tech #ai #tecnologia #innovazione
